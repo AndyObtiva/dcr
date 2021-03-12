@@ -4,43 +4,49 @@ A young boy programming language for drawing and coloring with repetition.
 
 ## Programming Language Syntax
 
-DCR always starts as a stick figure at the center of the drawing area, facing up.
+DCR always starts with a stick figure at the center of the drawing area, facing up.
 
 Programming language commands may be entered as text with the keyboard or through the graphical user interface using the mouse.
 
+Any invalid commands or values are simply ignored, so the programming language never errors.
+
+If a partial command is entered (e.g. `lef` for `left` or `rig` for `right`), it is interpreted as the full command.
+
+If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g. `90` degrees).
+
 ### Turning
 
-- `right`: Turn right by 90 degrees or any angle (e.g. `right` or `right 30`)
-- `left`: Turn left by 90 degrees or any angle (e.g. `left` or `left 120`)
+- `right` (or `r`): Turn right by 90 degrees or any angle (e.g. `right`, `right 30`, or `r 30`)
+- `left` (or `l`): Turn left by 90 degrees or any angle (e.g. `left`, `left 120`, or `l 120`)
 
 ### Movement
 
-- `forward`: Move foreward by one or more pixels (e.g. `forward` or `forward 50`)
-- `backward`: Move backward by one or more pixels (e.g. `backward` or `backward 30`)
+- `forward` (or `f`): Move foreward by one or more pixels (e.g. `forward`, `forward 50`, or `f 50`)
+- `backward` (or `b`): Move backward by one or more pixels (e.g. `backward`, `backward 30`, or `b 30`)
 
 ### Coloring
 
-- `color`: Color the shape already drawn (closing it first) with a random or specified color from the following list (e.g. `color` or `color 'red'`):
-  - 'black'
-  - 'blue'
-  - 'cyan'
-  - 'dark_blue'
-  - 'dark_cyan'
-  - 'dark_gray'
-  - 'dark_green'
-  - 'dark_magenta'
-  - 'dark_red'
-  - 'dark_yellow'
-  - 'gray'
-  - 'green'
-  - 'magenta'
-  - 'red'
-  - 'white'
-  - 'yellow'
+- `color` (or `c`): Color the shape already drawn by closing it and filling it with a random or specified color from the following list (e.g. `color`, `color red`, or `c red`):
+  - `black`
+  - `blue`
+  - `cyan`
+  - `dark_blue`
+  - `dark_cyan`
+  - `dark_gray`
+  - `dark_green`
+  - `dark_magenta`
+  - `dark_red`
+  - `dark_yellow`
+  - `gray`
+  - `green`
+  - `magenta`
+  - `red`
+  - `white`
+  - `yellow`
   
 ### Repetition
 
-- `repeat`: Repeat the last operation once or a number of times (e.g. `repeat` or `repeat 5`)
+- `repeat` (or `p`): Repeat all previous operations (up to the last empty line or the beginning otherwise) once or a number of times (e.g. `repeat`, `repeat 5`, or `p 5`)
 
 ## Contributing to dcr
 
@@ -61,3 +67,7 @@ Programming language commands may be entered as text with the keyboard or throug
 ## Copyright
 
 Copyright (c) 2021 Andy Maleh. See [LICENSE.txt](LICENSE.txt) for further details.
+
+--
+
+[<img src="https://raw.githubusercontent.com/AndyObtiva/glimmer/master/images/glimmer-logo-hi-res.png" height=40 />](https://github.com/AndyObtiva/glimmer) Built with [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt) (JRuby Desktop Development GUI Framework)
