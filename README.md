@@ -2,6 +2,8 @@
 
 A young boy programming language for drawing and coloring with repetition.
 
+![Draw Color Repeat Screenshot](/images/dcr-screenshot.png)
+
 ## Programming Language Syntax
 
 DCR always starts with a stick figure at the center of the drawing area, facing up.
@@ -19,10 +21,10 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 - `right` (or `r`): Turn right by 90 degrees or any angle (e.g. `right`, `right 30`, or `r 30`)
 - `left` (or `l`): Turn left by 90 degrees or any angle (e.g. `left`, `left 120`, or `l 120`)
 
-### Movement
+### Drawing
 
-- `forward` (or `f`): Move foreward by one or more pixels (e.g. `forward`, `forward 50`, or `f 50`)
-- `backward` (or `b`): Move backward by one or more pixels (e.g. `backward`, `backward 30`, or `b 30`)
+- `forward` (or `f`): Draw in black while moving foreward by one or more pixels (e.g. `forward`, `forward 50`, or `f 50`)
+- `backward` (or `b`): Draw in black while moving backward by one or more pixels (e.g. `backward`, `backward 30`, or `b 30`)
 
 ### Coloring
 

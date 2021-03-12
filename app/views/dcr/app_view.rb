@@ -53,7 +53,7 @@ class Dcr
         sash_form(:vertical) {
           sash_form {
             @commands_text = code_text(lines: true) { |code_text_proxy|
-              font height: 40, name: code_text_proxy.font.font_data[0].name
+              font height: 30, name: code_text_proxy.font.font_data[0].name
             }
             @commands_composite = composite
           }
