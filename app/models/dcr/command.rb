@@ -19,8 +19,16 @@ class Dcr
         @command_aliases ||= []
       end
 
+      def command_exclusion(exclusion_value)
+        command_exclusions << exclusion_value
+      end
+
+      def command_exclusions
+        @command_exclusions ||= []
+      end
+
       def match?(operation)
-        operation_derivatives(command_operation).include?(operation.to_s.downcase)
+        (operation_derivatives(command_operation) + command_aliases - command_exclusions).include?(operation.to_s.downcase)
       end
       
       def command_operation
@@ -29,7 +37,7 @@ class Dcr
       
       def operation_derivatives(operation)
         operation_length = operation.length
-        operation_length.times.map {|n| operation[0...(operation_length - n)]}
+        operation_length.times.map {|n| operation.chars.combination(operation_length - n).to_a}.reduce(:+).map(&:join)
       end
     end
       
