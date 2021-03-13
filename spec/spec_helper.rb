@@ -18,6 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'bundler/setup'
 Bundler.require(:default, :development)
+require 'puts_debuggerer'
 RSpec.configure do |config|
   # The following ensures rspec tests that instantiate and set Glimmer DSL widgets in @target get cleaned after
   config.after do
@@ -110,3 +111,9 @@ RSpec.configure do |config|
 end
 
 require 'glimmer/rake_task'
+
+SPEC_PATH = File.expand_path('.', __dir__)
+ROOT_PATH = File.join(SPEC_PATH, '..')
+APP_PATH = File.join(ROOT_PATH, 'app')
+
+$LOAD_PATH.prepend APP_PATH
