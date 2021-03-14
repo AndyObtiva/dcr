@@ -1,12 +1,22 @@
 require_relative 'command'
-  
+
 class Dcr
+  # A DCR program that takes text (representing commands) and board width/height for drawing polygons
+  # It has a current location (x/y) and angle. Angle is clockwise, with 0 being upward (north).
   class Program
-    attr_reader :text, :commands
+    STICK_FIGURE_SIZE = 30
     
-    def initialize(text = '')
+    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle
+    
+    # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
+    attr_accessor :polygons
+    
+    def initialize(text: '', board_width: 960, board_height: 284)
       @commands = []
-      self.text = text
+      @text = text
+      @board_width = board_width
+      @board_height = board_height
+      reset!
     end
     
     def text=(value)
@@ -21,8 +31,19 @@ class Dcr
       calculate_polygons
     end
     
-    # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
-    def polygons
+    def reset!
+      reset_location!
+      reset_angle!
+    end
+    
+    def reset_location!
+      self.location_x = (board_width - STICK_FIGURE_SIZE) / 2.0
+      self.location_y = (board_height - STICK_FIGURE_SIZE) / 2.0
+    end
+    
+    # Resets angle (0 means upward / north). Angle value is clockwise.
+    def reset_angle!
+      self.angle = 0 # means pointing upward (north)
     end
     
     private
@@ -34,6 +55,7 @@ class Dcr
     end
     
     def calculate_polygons
+      commands.each(&:call)
     end
   end
 end

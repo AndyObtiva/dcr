@@ -8,7 +8,6 @@
 - ability to delete GUI commands
 - Always keep a new GUI command hanging at the bottom
 - Color color strings (e.g. 'red') in code_text widget
-- Center stick_figure more accurately in canvas (taking its width/height into account)
 - Rerun all commands from the start on every change to the command_text widget that is parsable
 - Validate entered text
 - Parse and convert entered text into commands (converting colors to symbols)

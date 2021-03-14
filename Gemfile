@@ -5,7 +5,8 @@ source 'https://rubygems.org'
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem 'glimmer-dsl-swt', '~> 4.18.7.5'
-gem 'strategic', '~> 0.8.0'
+gem 'glimmer-cp-stickfigure', '~> 0.1.1'
+gem 'strategic', '~> 0.9.0'
 
 group :development do
   gem 'rspec', '~> 3.5.0'

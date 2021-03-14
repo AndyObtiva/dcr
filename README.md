@@ -2,6 +2,8 @@
 
 A young boy programming language for drawing and coloring with repetition.
 
+DCR is a minimum subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young boys in school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
+
 ![Draw Color Repeat Screenshot](/images/dcr-screenshot.png)
 
 ## Programming Language Syntax
@@ -32,13 +34,6 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
   - `black`
   - `blue`
   - `cyan`
-  - `dark_blue`
-  - `dark_cyan`
-  - `dark_gray`
-  - `dark_green`
-  - `dark_magenta`
-  - `dark_red`
-  - `dark_yellow`
   - `gray`
   - `green`
   - `magenta`

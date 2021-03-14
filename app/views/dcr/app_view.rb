@@ -1,3 +1,5 @@
+require 'models/dcr/program'
+
 require_relative 'stick_figure'
   
 class Dcr
@@ -7,8 +9,7 @@ class Dcr
     option :program
 
     before_body {
-      self.program = Program.new
-      
+      self.program = Program.new(board_width: 960, board_height: 284)
       Display.app_name = 'Draw Color Repeat'
       Display.app_version = VERSION
       @display = display {
@@ -50,32 +51,24 @@ class Dcr
     ## Top-most widget must be a shell or another custom shell
     #
     body {
-      shell {
-        minimum_size 320, 240
+      shell(:no_resize) {
+        minimum_size 960, 600
 #         image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico") #if OS.windows?
+        # TODO save this image to a file for packaging use
         image(512, 512) {
           rectangle(0, 0, :max, :max) {
             background :white
           }
           stick_figure(
-                x: 0,
-                y: 50,
-                width: 425,
-                height: 425,
+                location_x: 0,
+                location_y: 50,
+                size: 425,
               ) {
             line_width 10
             foreground :black
           }
         }
         text "Draw Color Repeat"
-        
-        on_swt_show {
-          unless @shown
-            body_root.bounds = display.bounds
-            @stick_figure.move_by(@canvas.bounds.width / 2, @canvas.bounds.height / 2,)
-            @shown = true
-          end
-        }
         
         sash_form(:vertical) {
           sash_form {
@@ -90,11 +83,11 @@ class Dcr
               background :white
               
               @stick_figure = stick_figure(
-                x: canvas_proxy.bounds.width / 2,
-                y: canvas_proxy.bounds.height / 2,
-                width: 30,
-                height: 30,
-              )
+                size: Program::STICK_FIGURE_SIZE,
+              ) {
+                location_x bind(self, 'program.location_x')
+                location_y bind(self, 'program.location_y')
+              }
             }
           }
         }
@@ -108,12 +101,6 @@ class Dcr
                 display_about_dialog
               }
             }
-#             menu_item {
-#               text '&Preferences...'
-#               on_widget_selected {
-#                 display_preferences_dialog
-#               }
-#             }
           }
         }
       }
@@ -125,40 +112,7 @@ class Dcr
         message "Draw Color Repeat #{VERSION}\n\n#{LICENSE}"
       }.open
     end
-    
-#     def display_preferences_dialog
-#       dialog(swt_widget) {
-#         text 'Preferences'
-#         grid_layout {
-#           margin_height 5
-#           margin_width 5
-#         }
-#         group {
-#           row_layout {
-#             type :vertical
-#             spacing 10
-#           }
-#           text 'Greeting'
-#           font style: :bold
-#           [
-#             'Hello, World!',
-#             'Howdy, Partner!'
-#           ].each do |greeting_text|
-#             button(:radio) {
-#               text greeting_text
-#               selection bind(self, :greeting) { |g| g == greeting_text }
-#               layout_data {
-#                 width 160
-#               }
-#               on_widget_selected { |event|
-#                 self.greeting = event.widget.getText
-#               }
-#             }
-#           end
-#         }
-#       }.open
-#     end
-
+  
   end
   
 end
