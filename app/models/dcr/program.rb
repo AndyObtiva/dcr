@@ -6,7 +6,7 @@ class Dcr
   class Program
     STICK_FIGURE_SIZE = 30
     
-    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle
+    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle, :expanded_commands
     
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
@@ -35,6 +35,7 @@ class Dcr
     
     def reset!
       self.angle = 0
+      self.polygons.clear
       reset_location!
       reset_angle!
     end
@@ -59,8 +60,17 @@ class Dcr
     end
     
     def calculate_polygons
-      self.polygons = []
-      commands.each(&:call)
+      reset!
+      expand_commands!
+      expanded_commands.each(&:call)
+    end
+    
+    # Calls repeat commands to expand other types of commands (repeat them)
+    def expand_commands!
+      self.expanded_commands = commands.dup
+      commands.each do |command|
+        command.call if command.is_a?(Command::Repeat)
+      end
     end
   end
 end

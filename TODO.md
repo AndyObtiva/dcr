@@ -1,5 +1,6 @@
 # TODO
 
+- Fix repaint issue when deleting a repeat from the end by highlighting entire repeat command line and deleting
 - Add `#eql?` and `#hash` to `Dcr::Polygon`
 - Make drawing happen through the left hand of the stick figure (end of left arm)
 - Process commands as case-insensitive
