@@ -22,3 +22,4 @@
 - Save drawn image into a file
 - Share drawn image by email
 - Posted drawn image online in the cloud along with the program for everyone to see via a link.
+- Add icon

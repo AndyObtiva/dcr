@@ -24,20 +24,8 @@ class Dcr
     
     after_body {
       observe(self, 'program.polygons') { |new_polygons|
-        @canvas.dispose
-        @canvas_container.content {
-          @canvas = canvas {
-            background :white
-            
-            # TODO show arrow pointing in the right direction (based on program.angle)
-            @stick_figure = stick_figure(
-              size: Program::STICK_FIGURE_SIZE,
-            ) {
-              location_x bind(self, 'program.location_x')
-              location_y bind(self, 'program.location_y')
-            }
-          }
-        }
+        # TODO consider disposing canvas shapes instead of the canvas itself (for perhaps improved performance)
+        @canvas.shapes.reject { |shape| shape.class == Glimmer::SWT::Custom::Shape }.each(&:dispose)
         new_polygons.each { |new_polygon|
           @canvas.content {
             polygon(new_polygon.point_array) {
@@ -87,12 +75,14 @@ class Dcr
             @canvas = canvas {
               background :white
               
+              # TODO show arrow pointing in the right direction (based on program.angle)
               @stick_figure = stick_figure(
                 size: Program::STICK_FIGURE_SIZE,
               ) {
                 location_x bind(self, 'program.location_x')
                 location_y bind(self, 'program.location_y')
               }
+             
             }
           }
         }
