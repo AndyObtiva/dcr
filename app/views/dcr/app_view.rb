@@ -24,19 +24,22 @@ class Dcr
     
     after_body {
       observe(self, 'program.polygons') { |new_polygons|
-        # TODO consider disposing canvas shapes instead of the canvas itself (for perhaps improved performance)
-        @polygon_container.shapes.each(&:dispose)
-        new_polygons.each { |new_polygon|
-          @polygon_container.content {
-            polygon(new_polygon.point_array) {
-              if new_polygon.background.nil?
-                foreground :black
-              else
-                background new_polygon.background
-              end
+        if new_polygons != @last_polygons
+          # TODO consider disposing canvas shapes instead of the canvas itself (for perhaps improved performance)
+          @polygon_container.shapes.each(&:dispose)
+          new_polygons.each { |new_polygon|
+            @polygon_container.content {
+              polygon(new_polygon.point_array) {
+                if new_polygon.background.nil?
+                  foreground :black
+                else
+                  background new_polygon.background
+                end
+              }
             }
           }
-        }
+          @last_polygons = new_polygons
+        end
       }
     }
 

@@ -18,6 +18,8 @@ Any invalid commands or values are simply ignored, so the programming language n
 
 If a partial command is entered (e.g. `lef` for `left` or `rig` for `right`), it is interpreted as the full command.
 
+If a partial color value is entered (e.g. `gree` for `green` or `r` for `red`), it is interpreted as the full color value.
+
 If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g. `90` degrees).
 
 ### Turning
@@ -36,11 +38,11 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
   - `black`
   - `blue`
   - `cyan`
-  - `gray`
+  - `grey`
   - `green`
-  - `magenta`
+  - `pink`
+  - `purple`
   - `red`
-  - `white`
   - `yellow`
   
 ### Repetition
@@ -54,13 +56,13 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 DCR Code:
 
 ```ruby
-r
-f 30
-p 2
-r 45
-f 60
-p 7
-c blue
+right
+forward 30
+repeat 2
+right 45
+forward 60
+repeat 7
+color blue
 ```
 
 Screenshot:

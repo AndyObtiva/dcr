@@ -1,7 +1,7 @@
-r
-f 30
-p 2
-r 45
-f 60
-p 7
-c blue
+right
+forward 30
+repeat 2
+right 45
+forward 60
+repeat 7
+color blue

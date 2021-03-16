@@ -7,7 +7,7 @@ class Dcr
   class Program
     STICK_FIGURE_SIZE = 30
     
-    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle, :expanded_commands
+    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle, :expanded_commands, :last_polygons
     
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
@@ -51,7 +51,8 @@ class Dcr
     end
     
     def reset_polygons!
-      self.polygons = [Polygon.new(location_x, location_y)]
+      # reset quietly via instance variable without alerting observers with attribute writer method
+      @polygons = [Polygon.new(location_x, location_y)]
     end
     
     private
@@ -66,6 +67,8 @@ class Dcr
       reset!
       expand_commands!
       expanded_commands.each(&:call)
+      notify_observers(:polygons) if @polygons != @last_polygons # TODO do away with this using nested data-binding
+      @last_polygons = @polygons
     end
     
     # Calls repeat commands to expand other types of commands (repeat them)
