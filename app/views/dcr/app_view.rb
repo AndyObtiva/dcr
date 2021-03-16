@@ -24,26 +24,31 @@ class Dcr
     
     after_body {
       observe(self, 'program.polygons') { |new_polygons|
-#         @canvas.dispose
-#         @canvas_container.content {
-#           @canvas = canvas { |canvas_proxy|
-#             background :white
-#
-#             @stick_figure = stick_figure(
-#               x: canvas_proxy.bounds.width / 2,
-#               y: canvas_proxy.bounds.height / 2,
-#               width: 30,
-#               height: 30,
-#             )
-#           }
-#         }
-#         new_polygons.each { |new_polygon|
-#           @canvas.content {
-#             polygon(new_polygon.point_array) {
-#               background new_polygon.background
-#             }
-#           }
-#         }
+        @canvas.dispose
+        @canvas_container.content {
+          @canvas = canvas {
+            background :white
+            
+            # TODO show arrow pointing in the right direction (based on program.angle)
+            @stick_figure = stick_figure(
+              size: Program::STICK_FIGURE_SIZE,
+            ) {
+              location_x bind(self, 'program.location_x')
+              location_y bind(self, 'program.location_y')
+            }
+          }
+        }
+        new_polygons.each { |new_polygon|
+          @canvas.content {
+            polygon(new_polygon.point_array) {
+              if new_polygon.background.nil?
+                foreground :black
+              else
+                background new_polygon.background
+              end
+            }
+          }
+        }
       }
     }
 
@@ -78,8 +83,8 @@ class Dcr
             }
             @program_composite = composite
           }
-          @canvas_container = scrolled_composite {
-            @canvas = canvas { |canvas_proxy|
+          @canvas_container = scrolled_composite(:none) {
+            @canvas = canvas {
               background :white
               
               @stick_figure = stick_figure(

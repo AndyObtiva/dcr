@@ -6,7 +6,7 @@ class Dcr
     
     class << self
       def create(program: , text: )
-        operation, _ = text.split.map(&:strip)
+        operation, _ = text.split.map(&:strip) # TODO use regex instead to tolerate text stuck next to number
         operation_strategy = strategies.detect { |strategy| strategy.match?(operation) }
         operation_strategy&.new(program: program, text: text)
       end

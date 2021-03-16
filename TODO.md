@@ -1,6 +1,12 @@
 # TODO
 
-- Extract stick_figure into its own gem
+- Add `#eql?` and `#hash` to `Dcr::Polygon`
+- Make drawing happen through the left hand of the stick figure (end of left arm)
+- Process commands as case-insensitive
+- Tolerate errors in typing colors
+- Support concatenation of number to text (as tolerating error) (e.g. f3, backward9, right80)
+- show arrow pointing in the right direction (based on program.angle)
+- Consider dropping a stick figure after every forward/backward command
 - draw from between the legs of the stick figure
 - GUI appends command entries with a drop down for operation and a spinner/drop down for value (which could be moved up and down with drag&drop or arrows and could be deleted)
 - generate GUI components in alignment with programming commands

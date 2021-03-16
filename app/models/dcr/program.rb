@@ -13,13 +13,15 @@ class Dcr
     
     def initialize(text: '', board_width: 960, board_height: 284)
       @commands = []
-      @text = text
+      @polygons = []
       @board_width = board_width
       @board_height = board_height
+      @text = text
       reset!
     end
     
     def text=(value)
+      reset!
       @text = value
       parse_commands
     end
@@ -32,11 +34,13 @@ class Dcr
     end
     
     def reset!
+      self.angle = 0
       reset_location!
       reset_angle!
     end
     
     def reset_location!
+      # also set stick_figure_location_x and stick_figure_location_y, which is slightly different
       self.location_x = (board_width - STICK_FIGURE_SIZE) / 2.0
       self.location_y = (board_height - STICK_FIGURE_SIZE) / 2.0
     end
@@ -55,6 +59,7 @@ class Dcr
     end
     
     def calculate_polygons
+      self.polygons = []
       commands.each(&:call)
     end
   end
