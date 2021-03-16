@@ -1,6 +1,7 @@
 class Dcr
   class Command
     class Left < Command
+      command_alias 'l'
       command_exclusion 'f'
       
       def call

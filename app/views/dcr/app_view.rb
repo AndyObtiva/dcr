@@ -74,6 +74,9 @@ class Dcr
           @canvas_container = scrolled_composite(:none) {
             @canvas = canvas {
               background :white
+           
+              # This is where drawn shapes are added
+              @polygon_container = shape(0, 0, :max, :max)
               
               # TODO show arrow pointing in the right direction (based on program.angle)
               @stick_figure = stick_figure(
@@ -82,9 +85,6 @@ class Dcr
                 location_x bind(self, 'program.location_x')
                 location_y bind(self, 'program.location_y')
               }
-           
-              # This is where drawn shapes are added
-              @polygon_container = shape(0, 0, :max, :max)
             }
           }
         }

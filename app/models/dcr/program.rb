@@ -1,4 +1,5 @@
 require_relative 'command'
+require_relative 'polygon'
 
 class Dcr
   # A DCR program that takes text (representing commands) and board width/height for drawing polygons
@@ -13,7 +14,6 @@ class Dcr
     
     def initialize(text: '', board_width: 960, board_height: 284)
       @commands = []
-      @polygons = []
       @board_width = board_width
       @board_height = board_height
       @text = text
@@ -34,10 +34,9 @@ class Dcr
     end
     
     def reset!
-      self.angle = 0
-      self.polygons.clear
       reset_location!
       reset_angle!
+      reset_polygons!
     end
     
     def reset_location!
@@ -49,6 +48,10 @@ class Dcr
     # Resets angle (0 means upward / north). Angle value is clockwise.
     def reset_angle!
       self.angle = 0 # means pointing upward (north)
+    end
+    
+    def reset_polygons!
+      self.polygons = [Polygon.new(location_x, location_y)]
     end
     
     private

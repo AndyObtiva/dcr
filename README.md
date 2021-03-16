@@ -60,6 +60,7 @@ p 2
 r 45
 f 60
 p 7
+c blue
 ```
 
 Screenshot:

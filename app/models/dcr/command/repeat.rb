@@ -1,6 +1,8 @@
 class Dcr
   class Command
     class Repeat < Command
+      command_alias 'p'
+      
       def call
         command_index_of_self = @program.expanded_commands.index(self)
         commands_up_to_self = @program.expanded_commands[0...command_index_of_self]
