@@ -24,3 +24,8 @@
 - Share drawn image by email
 - Posted drawn image online in the cloud along with the program for everyone to see via a link.
 - Add icon
+- Consider caching of commands
+- Consider caching of polygons up per command
+- Consider execution delays while typing (delay to evaluate by 200ms for example)
+- Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)
+- Load program

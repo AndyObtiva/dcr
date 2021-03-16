@@ -12,6 +12,8 @@ DCR always starts with a stick figure at the center of the drawing area, facing 
 
 Programming language commands may be entered as text with the keyboard or through the graphical user interface using the mouse.
 
+This programming language is automatically executed while commands are being entered, so no "Run" button is needed. Boys will get to see their commands instantly drawn and alter the drawings spontaneously, thus turning this into a sort of a game too, not just a programming language.
+
 Any invalid commands or values are simply ignored, so the programming language never errors.
 
 If a partial command is entered (e.g. `lef` for `left` or `rig` for `right`), it is interpreted as the full command.
@@ -44,6 +46,25 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 ### Repetition
 
 - `repeat` (or `p`): Repeat all previous operations (up to the last empty line or the beginning otherwise) once or a number of times (e.g. `repeat`, `repeat 5`, or `p 5`)
+
+## Samples
+
+### Octagon of Squares
+
+DCR Code:
+
+```ruby
+r
+f 30
+p 2
+r 45
+f 60
+p 7
+```
+
+Screenshot:
+
+![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
 
 ## Contributing to dcr
 
