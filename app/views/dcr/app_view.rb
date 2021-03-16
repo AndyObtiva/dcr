@@ -25,9 +25,9 @@ class Dcr
     after_body {
       observe(self, 'program.polygons') { |new_polygons|
         # TODO consider disposing canvas shapes instead of the canvas itself (for perhaps improved performance)
-        @canvas.shapes.reject { |shape| shape.class == Glimmer::SWT::Custom::Shape }.each(&:dispose)
+        @polygon_container.shapes.each(&:dispose)
         new_polygons.each { |new_polygon|
-          @canvas.content {
+          @polygon_container.content {
             polygon(new_polygon.point_array) {
               if new_polygon.background.nil?
                 foreground :black
@@ -82,7 +82,9 @@ class Dcr
                 location_x bind(self, 'program.location_x')
                 location_y bind(self, 'program.location_y')
               }
-             
+           
+              # This is where drawn shapes are added
+              @polygon_container = shape(0, 0, :max, :max)
             }
           }
         }
