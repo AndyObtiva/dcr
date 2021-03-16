@@ -8,9 +8,11 @@ class Dcr
         'gray' => :gray,
         'grey' => :gray,
         'green' => :green,
+        'orange' => [255, 127, 0],
         'pink' => :magenta,
         'purple' => :dark_magenta,
         'red' => :red,
+        'white' => :white,
         'yellow' => :yellow,
       }
       command_alias 'c'
@@ -36,7 +38,7 @@ class Dcr
       
       def call
         @program.polygons.last&.background = value
-        @program.notify_observers(:polygons)
+        @program.new_polygon!
       end
       
       def value

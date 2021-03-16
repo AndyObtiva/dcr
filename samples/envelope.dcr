@@ -1,0 +1,14 @@
+left 60
+forward 104
+right 150
+forward 180
+right 150
+forward 104
+backward 104
+left 60
+forward 90
+right
+forward 180
+right
+forward 90
+color white

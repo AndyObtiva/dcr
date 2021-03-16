@@ -7,7 +7,7 @@ class Dcr
   class Program
     STICK_FIGURE_SIZE = 30
     
-    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle, :expanded_commands, :last_polygons
+    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle, :expanded_commands
     
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
@@ -21,7 +21,6 @@ class Dcr
     end
     
     def text=(value)
-      reset!
       @text = value
       parse_commands
     end
@@ -55,6 +54,10 @@ class Dcr
       @polygons = [Polygon.new(location_x, location_y)]
     end
     
+    def new_polygon!
+      @polygons << Polygon.new(location_x, location_y)
+    end
+    
     private
     
     def parse_commands
@@ -67,8 +70,7 @@ class Dcr
       reset!
       expand_commands!
       expanded_commands.each(&:call)
-      notify_observers(:polygons) if @polygons != @last_polygons # TODO do away with this using nested data-binding
-      @last_polygons = @polygons
+      notify_observers(:polygons) # TODO do away with this using nested data-binding
     end
     
     # Calls repeat commands to expand other types of commands (repeat them)
@@ -77,6 +79,7 @@ class Dcr
       commands.each do |command|
         command.call if command.is_a?(Command::Repeat)
       end
+      self.expanded_commands.compact!
     end
   end
 end

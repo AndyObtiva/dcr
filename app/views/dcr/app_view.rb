@@ -25,17 +25,21 @@ class Dcr
     after_body {
       observe(self, 'program.polygons') { |new_polygons|
         if new_polygons != @last_polygons
-          # TODO consider disposing canvas shapes instead of the canvas itself (for perhaps improved performance)
-          @polygon_container.shapes.each(&:dispose)
+          @polygon_container.shapes.dup.each(&:dispose)
           new_polygons.each { |new_polygon|
             @polygon_container.content {
-              polygon(new_polygon.point_array) {
-                if new_polygon.background.nil?
+              if new_polygon.background.nil?
+                polyline(new_polygon.point_array) {
                   foreground :black
-                else
+                }
+              else
+                polygon(new_polygon.point_array) {
                   background new_polygon.background
-                end
-              }
+                }
+                polygon(new_polygon.point_array) {
+                  foreground :black
+                }
+              end
             }
           }
           @last_polygons = new_polygons

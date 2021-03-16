@@ -1,5 +1,7 @@
 # DCR (Draw Color Repeat)
 
+[(note: this is an alpha project that is not yet released)](/TODO.md)
+
 A young boy programming language for drawing and coloring with repetition.
 
 DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young boys in school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
@@ -40,9 +42,11 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
   - `cyan`
   - `grey`
   - `green`
+  - `orange`
   - `pink`
   - `purple`
   - `red`
+  - `white`
   - `yellow`
   
 ### Repetition
@@ -50,6 +54,31 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 - `repeat` (or `p`): Repeat all previous operations (up to the last empty line or the beginning otherwise) once or a number of times (e.g. `repeat`, `repeat 5`, or `p 5`)
 
 ## Samples
+
+### Envelope
+
+DCR Code:
+
+```ruby
+left 60
+forward 104
+right 150
+forward 180
+right 150
+forward 104
+backward 104
+left 60
+forward 90
+right
+forward 180
+right
+forward 90
+color white
+```
+
+Screenshot:
+
+![envelope](/images/dcr-samples-envelope.png)
 
 ### Octagon of Squares
 
@@ -68,6 +97,42 @@ color blue
 Screenshot:
 
 ![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
+
+### House
+
+DCR Code:
+
+```ruby
+right 45
+forward 80
+right
+forward 80
+right 135
+forward 113
+color red
+right
+
+right
+forward 113
+right
+forward 113
+right
+forward 74
+right
+forward 40
+right
+forward 30
+right
+forward 40
+right
+forward 70
+right
+color grey
+```
+
+Screenshot:
+
+![house](/images/dcr-samples-house.png)
 
 ## Contributing to dcr
 

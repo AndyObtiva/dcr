@@ -20,6 +20,8 @@
 - Consider execution delays while typing (delay to evaluate by 200ms for example)
 - Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)
 - Load program
+- Undo/Redo support
+- Make any command that fails to be interpreted an empty command (that way we can add comments)
 
 ## Issues
 
