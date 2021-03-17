@@ -86,6 +86,39 @@ Screenshot:
 
 ![square](/images/dcr-samples-square.png)
 
+### Triangle
+
+DCR Code:
+
+```ruby
+right 60
+forward 180
+right 80
+forward 270
+color black
+```
+
+Screenshot:
+
+![triangle](/images/dcr-samples-triangle.png)
+
+### Equilateral Triangle
+
+DCR Code:
+
+```ruby
+left
+
+forward 100
+right 120
+repeat 2
+color blue
+```
+
+Screenshot:
+
+![equilateral triangle](/images/dcr-samples-equilateral-triangle.png)
+
 ### Circle
 
 DCR Code:

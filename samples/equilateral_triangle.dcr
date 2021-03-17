@@ -1,0 +1,6 @@
+left
+
+forward 100
+right 120
+repeat 2
+color blue
