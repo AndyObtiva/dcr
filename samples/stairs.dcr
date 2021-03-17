@@ -1,0 +1,16 @@
+forward 20
+right
+forward 20
+left
+repeat 5
+backward 240
+left
+forward 240
+right
+
+forward 20
+right
+forward 20
+left
+repeat 5
+color white

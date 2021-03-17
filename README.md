@@ -112,6 +112,33 @@ Screenshot:
 
 ![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
 
+### Stairs
+
+DCR Code:
+
+```ruby
+forward 20
+right
+forward 20
+left
+repeat 5
+backward 240
+left
+forward 240
+right
+
+forward 20
+right
+forward 20
+left
+repeat 5
+color white
+```
+
+Screenshot:
+
+![stairs](/images/dcr-samples-stairs.png)
+
 ### Aztec Pyramid
 
 DCR Code:
