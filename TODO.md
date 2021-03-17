@@ -22,6 +22,7 @@
 - Load program
 - Undo/Redo support
 - Make any command that fails to be interpreted an empty command (that way we can add comments)
+- Extract string fuzz matching algorithm into its own Ruby gem
 
 ## Issues
 

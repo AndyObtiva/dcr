@@ -1,0 +1,15 @@
+right
+forward 20
+left
+forward 20
+repeat 5
+
+right
+forward 20
+
+right
+forward 20
+left
+forward 20
+repeat 5
+color yellow

@@ -1,6 +1,6 @@
 # DCR (Draw Color Repeat)
 
-[(note: this is an alpha project that is not yet released)](/TODO.md)
+[(note: this is an alpha project that is not released yet)](/TODO.md)
 
 A young boy programming language for drawing and coloring with repetition.
 
@@ -39,7 +39,6 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 - `color` (or `c`): Color the shape already drawn by closing it and filling it with a random or specified color from the following list (e.g. `color`, `color red`, or `c red`):
   - `black`
   - `blue`
-  - `cyan`
   - `grey`
   - `green`
   - `orange`
@@ -112,6 +111,31 @@ color blue
 Screenshot:
 
 ![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
+
+### Aztec Pyramid
+
+DCR Code:
+
+```ruby
+right
+forward 20
+left
+forward 20
+repeat 5
+right
+forward 20
+
+right
+forward 20
+left
+forward 20
+repeat 5
+color yellow
+```
+
+Screenshot:
+
+![aztec pyramid](/images/dcr-samples-aztec-pyramid.png)
 
 ### House
 
