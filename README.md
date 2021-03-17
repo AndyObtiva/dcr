@@ -80,6 +80,21 @@ Screenshot:
 
 ![envelope](/images/dcr-samples-envelope.png)
 
+### Octagon
+
+DCR Code:
+
+```ruby
+right 45
+forward 80
+repeat 7
+color red
+```
+
+Screenshot:
+
+![octagon](/images/dcr-samples-octagon.png)
+
 ### Octagon of Squares
 
 DCR Code:
