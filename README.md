@@ -192,6 +192,23 @@ Screenshot:
 
 ![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
 
+### Octagon of Octagons
+
+DCR Code:
+
+```ruby
+forward 20
+right 45
+repeat 6
+color
+forward 70
+repeat 9
+```
+
+Screenshot:
+
+![octagon of octagons](/images/dcr-samples-octagon-of-octagons.png)
+
 ### Traffic Light
 
 DCR Code:

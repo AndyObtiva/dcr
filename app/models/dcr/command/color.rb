@@ -42,7 +42,12 @@ class Dcr
       end
       
       def value
-        !Color.expanded_color_map.keys.include?(@value.to_s) ? COLOR_MAP.values.sample : Color.expanded_color_map[@value.to_s]
+        !Color.expanded_color_map.keys.include?(@value.to_s) ? next_color : Color.expanded_color_map[@value.to_s]
+      end
+      
+      def next_color
+        @next_color_index = @next_color_index.nil? ? 0 : @next_color_index + 1
+        COLOR_MAP.values.uniq[@next_color_index]
       end
     end
   end

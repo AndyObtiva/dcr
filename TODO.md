@@ -24,4 +24,4 @@
 
 ## Issues
 
-None
+- Look into issue of typing an invalid command in a series of many commands undoing previous drawings from previous commands

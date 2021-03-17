@@ -1,0 +1,6 @@
+forward 20
+right 45
+repeat 6
+color
+forward 70
+repeat 9
