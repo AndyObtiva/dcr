@@ -13,7 +13,7 @@ class Dcr
       end
       
       def value
-        @value.to_i == 0 ? 1 : @value.to_i
+        super.to_i == 0 ? 1 : super.to_i
       end
     end
   end

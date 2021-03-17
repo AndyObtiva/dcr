@@ -19,7 +19,7 @@ class Dcr
       end
       
       def value
-        @value.to_f == 0 ? 1 : @value.to_f
+        super.to_f == 0 ? 1 : super.to_f
       end
     end
   end

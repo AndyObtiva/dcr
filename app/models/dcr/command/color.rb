@@ -51,7 +51,7 @@ class Dcr
       end
       
       def value
-        !Color.expanded_color_map.keys.include?(@value.to_s) ? Color.next_color : Color.expanded_color_map[@value.to_s]
+        !Color.expanded_color_map.keys.include?(super.to_s) ? Color.next_color : Color.expanded_color_map[super.to_s]
       end
     end
   end

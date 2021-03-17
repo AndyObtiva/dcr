@@ -9,7 +9,7 @@ class Dcr
       end
       
       def value
-        @value.to_f == 0 ? 90 : @value.to_f
+        super.to_f == 0 ? 90 : super.to_f
       end
     end
   end
