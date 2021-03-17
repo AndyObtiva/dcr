@@ -134,6 +134,24 @@ Screenshot:
 
 ![circle](/images/dcr-samples-circle.png)
 
+### Circle of Circles
+
+DCR Code:
+
+```ruby
+right 8
+forward 2
+repeat 45
+color
+right 10
+forward 32
+repeat 19
+```
+
+Screenshot:
+
+![circle of circles](/images/dcr-samples-circle-of-circles.png)
+
 ### Envelope
 
 DCR Code:

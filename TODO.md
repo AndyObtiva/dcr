@@ -21,6 +21,7 @@
 - Make any command that fails to be interpreted an empty command (that way we can add comments)
 - Extract string fuzz matching algorithm into its own Ruby gem
 - Extract samples from jar in packaged app run
+- Consider doing drawing async
 - Optimize performance for high repetition counts or show a dialog saying "redrawing" if redrawing takes too long (longer than 5 seconds) with a cancel button
 
 ## Issues
