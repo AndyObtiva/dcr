@@ -54,6 +54,23 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 
 ## Samples
 
+### Rectangle
+
+DCR Code:
+
+```ruby
+forward 80
+right
+forward 160
+right
+repeat
+color green
+```
+
+Screenshot:
+
+![rectangle](/images/dcr-samples-rectangle.png)
+
 ### Square
 
 DCR Code:

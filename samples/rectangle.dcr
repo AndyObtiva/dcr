@@ -1,0 +1,6 @@
+forward 80
+right
+forward 160
+right
+repeat
+color green
