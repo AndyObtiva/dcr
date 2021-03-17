@@ -22,7 +22,9 @@
 - Extract string fuzz matching algorithm into its own Ruby gem
 - Extract samples from jar in packaged app run
 - Consider doing drawing async
+- Consider delaying execution by a 200 milliseconds while typing
 - Optimize performance for high repetition counts or show a dialog saying "redrawing" if redrawing takes too long (longer than 5 seconds) with a cancel button
+- Avoid re-duplicating polygons that already exist (thus optimizing performance)
 
 ## Issues
 

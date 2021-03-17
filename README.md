@@ -119,6 +119,21 @@ Screenshot:
 
 ![equilateral triangle](/images/dcr-samples-equilateral-triangle.png)
 
+### Octagon
+
+DCR Code:
+
+```ruby
+right 45
+forward 80
+repeat 7
+color red
+```
+
+Screenshot:
+
+![octagon](/images/dcr-samples-octagon.png)
+
 ### Circle
 
 DCR Code:
@@ -133,24 +148,6 @@ color orange
 Screenshot:
 
 ![circle](/images/dcr-samples-circle.png)
-
-### Circle of Circles
-
-DCR Code:
-
-```ruby
-right 8
-forward 2
-repeat 45
-color
-right 10
-forward 32
-repeat 19
-```
-
-Screenshot:
-
-![circle of circles](/images/dcr-samples-circle-of-circles.png)
 
 ### Envelope
 
@@ -176,6 +173,32 @@ color white
 Screenshot:
 
 ![envelope](/images/dcr-samples-envelope.png)
+
+### Bee Hive
+
+DCR Code:
+
+```ruby
+right 60
+forward 20
+repeat 4
+color yellow
+left 60
+forward 20
+repeat 2
+right 60
+forward 20
+repeat 4
+right 60
+forward 20
+left 60
+forward 20
+repeat 5
+```
+
+Screenshot:
+
+![bee hive](/images/dcr-samples-bee-hive.png)
 
 ### Five Pointed Star
 
@@ -261,21 +284,6 @@ Screenshot:
 
 ![aztec pyramid](/images/dcr-samples-aztec-pyramid.png)
 
-### Octagon
-
-DCR Code:
-
-```ruby
-right 45
-forward 80
-repeat 7
-color red
-```
-
-Screenshot:
-
-![octagon](/images/dcr-samples-octagon.png)
-
 ### Octagon of Squares
 
 DCR Code:
@@ -310,6 +318,24 @@ repeat 9
 Screenshot:
 
 ![octagon of octagons](/images/dcr-samples-octagon-of-octagons.png)
+
+### Circle of Circles
+
+DCR Code:
+
+```ruby
+right 8
+forward 2
+repeat 45
+color
+right 10
+forward 32
+repeat 19
+```
+
+Screenshot:
+
+![circle of circles](/images/dcr-samples-circle-of-circles.png)
 
 ### Playing Cards
 
