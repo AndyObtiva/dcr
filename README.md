@@ -177,6 +177,21 @@ Screenshot:
 
 ![envelope](/images/dcr-samples-envelope.png)
 
+### Five Pointed Star
+
+DCR Code:
+
+```ruby
+left 144
+forward 140
+repeat 4
+color white
+```
+
+Screenshot:
+
+![five pointed star](/images/dcr-samples-five-pointed-star.png)
+
 ### Eight Pointed Star
 
 DCR Code:
