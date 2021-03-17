@@ -177,6 +177,23 @@ Screenshot:
 
 ![envelope](/images/dcr-samples-envelope.png)
 
+### Eight Pointed Star
+
+DCR Code:
+
+```ruby
+forward 28
+right 45
+forward 28
+left
+repeat 7
+color yellow
+```
+
+Screenshot:
+
+![eight pointed star](/images/dcr-samples-eight-pointed-star.png)
+
 ### Stairs
 
 DCR Code:
