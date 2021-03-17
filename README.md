@@ -159,96 +159,6 @@ Screenshot:
 
 ![envelope](/images/dcr-samples-envelope.png)
 
-### Octagon
-
-DCR Code:
-
-```ruby
-right 45
-forward 80
-repeat 7
-color red
-```
-
-Screenshot:
-
-![octagon](/images/dcr-samples-octagon.png)
-
-### Octagon of Squares
-
-DCR Code:
-
-```ruby
-right
-forward 30
-repeat 2
-right 45
-forward 60
-repeat 7
-color blue
-```
-
-Screenshot:
-
-![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
-
-### Octagon of Octagons
-
-DCR Code:
-
-```ruby
-forward 20
-right 45
-repeat 6
-color
-forward 70
-repeat 9
-```
-
-Screenshot:
-
-![octagon of octagons](/images/dcr-samples-octagon-of-octagons.png)
-
-### Traffic Light
-
-DCR Code:
-
-```ruby
-backward 40
-
-forward
-right 2
-repeat 180
-color green
-
-left 2
-forward 60
-
-forward
-right 2
-repeat 180
-color yellow
-
-left 2
-forward 60
-
-forward
-right 2
-repeat 180
-color red
-
-forward
-right 2
-repeat 90
-
-left 4
-forward 120
-```
-
-Screenshot:
-
-![traffic light](/images/dcr-samples-traffic-light.png)
-
 ### Stairs
 
 DCR Code:
@@ -300,6 +210,116 @@ color yellow
 Screenshot:
 
 ![aztec pyramid](/images/dcr-samples-aztec-pyramid.png)
+
+### Octagon
+
+DCR Code:
+
+```ruby
+right 45
+forward 80
+repeat 7
+color red
+```
+
+Screenshot:
+
+![octagon](/images/dcr-samples-octagon.png)
+
+### Octagon of Squares
+
+DCR Code:
+
+```ruby
+right
+forward 30
+repeat 2
+right 45
+forward 60
+repeat 7
+color blue
+```
+
+Screenshot:
+
+![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
+
+### Octagon of Octagons
+
+DCR Code:
+
+```ruby
+forward 20
+right 45
+repeat 6
+color
+forward 70
+repeat 9
+```
+
+Screenshot:
+
+![octagon of octagons](/images/dcr-samples-octagon-of-octagons.png)
+
+### Playing Cards
+
+DCR Code:
+
+```ruby
+forward 50
+right
+forward 36
+right
+repeat
+color
+left 9
+forward 5
+repeat 14
+```
+
+Screenshot:
+
+![playing cards](/images/dcr-samples-playing-cards.png)
+
+### Traffic Light
+
+DCR Code:
+
+```ruby
+backward 40
+
+forward
+right 2
+repeat 180
+color green
+
+left 2
+forward 60
+
+forward
+right 2
+repeat 180
+color yellow
+
+left 2
+forward 60
+
+forward
+right 2
+repeat 180
+color red
+
+forward
+right 2
+repeat 90
+
+left 4
+forward 120
+```
+
+Screenshot:
+
+![traffic light](/images/dcr-samples-traffic-light.png)
 
 ### House
 

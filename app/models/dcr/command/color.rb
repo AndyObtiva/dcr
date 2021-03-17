@@ -34,6 +34,15 @@ class Dcr
           color_string_length = color_string.length
           color_string_length.times.map {|n| color_string.chars.combination(color_string_length - n).to_a}.reduce(:+).map(&:join)
         end
+      
+        def next_color
+          @next_color_index = @next_color_index.nil? ? 0 : @next_color_index + 1
+          unique_colors[@next_color_index % unique_colors.count]
+        end
+        
+        def unique_colors
+          @unique_colors ||= COLOR_MAP.values.uniq
+        end
       end
       
       def call
@@ -42,12 +51,7 @@ class Dcr
       end
       
       def value
-        !Color.expanded_color_map.keys.include?(@value.to_s) ? next_color : Color.expanded_color_map[@value.to_s]
-      end
-      
-      def next_color
-        @next_color_index = @next_color_index.nil? ? 0 : @next_color_index + 1
-        COLOR_MAP.values.uniq[@next_color_index]
+        !Color.expanded_color_map.keys.include?(@value.to_s) ? Color.next_color : Color.expanded_color_map[@value.to_s]
       end
     end
   end
