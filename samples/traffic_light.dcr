@@ -1,0 +1,29 @@
+backward 40
+
+forward
+right 2
+repeat 180
+color green
+
+left 2
+forward 60
+
+forward
+right 2
+repeat 180
+color yellow
+
+left 2
+forward 60
+
+forward
+right 2
+repeat 180
+color red
+
+forward
+right 2
+repeat 90
+
+left 4
+forward 120

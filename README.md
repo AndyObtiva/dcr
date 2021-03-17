@@ -192,6 +192,46 @@ Screenshot:
 
 ![octagon of squares](/images/dcr-samples-octagon-of-squares.png)
 
+### Traffic Light
+
+DCR Code:
+
+```ruby
+backward 40
+
+forward
+right 2
+repeat 180
+color green
+
+left 2
+forward 60
+
+forward
+right 2
+repeat 180
+color yellow
+
+left 2
+forward 60
+
+forward
+right 2
+repeat 180
+color red
+
+forward
+right 2
+repeat 90
+
+left 4
+forward 120
+```
+
+Screenshot:
+
+![traffic light](/images/dcr-samples-traffic-light.png)
+
 ### Stairs
 
 DCR Code:
