@@ -54,6 +54,21 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 
 ## Samples
 
+### Circle
+
+DCR Code:
+
+```ruby
+forward
+right 1
+repeat 360
+color orange
+```
+
+Screenshot:
+
+![circle](/images/dcr-samples-circle.png)
+
 ### Envelope
 
 DCR Code:
