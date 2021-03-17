@@ -1,0 +1,4 @@
+forward 80
+right
+repeat 3
+color yellow
