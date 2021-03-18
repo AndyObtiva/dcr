@@ -4,7 +4,7 @@
 
 A young boy programming language for drawing and coloring with repetition.
 
-DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young boys in school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
+DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young boys in school (not just the ones who already gravitate towards math and computers). Unlike traditional [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html), DCR uses a stick figure instead of a turtle to draw clean high resolution graphics (no big square pixels).
 
 ![Draw Color Repeat Screenshot](/images/dcr-screenshot.png)
 
@@ -292,10 +292,10 @@ DCR Code:
 right
 forward 30
 repeat 2
+color
 right 45
 forward 60
 repeat 7
-color blue
 ```
 
 Screenshot:
@@ -337,7 +337,7 @@ Screenshot:
 
 ![circle of circles](/images/dcr-samples-circle-of-circles.png)
 
-### Playing Cards
+### Deck of Cards
 
 DCR Code:
 
@@ -355,7 +355,7 @@ repeat 14
 
 Screenshot:
 
-![playing cards](/images/dcr-samples-playing-cards.png)
+![deck of cards](/images/dcr-samples-deck-of-cards.png)
 
 ### Traffic Light
 

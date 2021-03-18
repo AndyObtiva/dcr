@@ -6,14 +6,14 @@ class Dcr
     
     TEXT_FONT_HEIGHT = 30
     GUI_FONT_HEIGHT = TEXT_FONT_HEIGHT - 7
-    BOARD_WIDTH = 960
-    BOARD_HEIGHT = 484
+    DEFAULT_CANVAS_WIDTH = 960
+    DEFAULT_CANVAS_HEIGHT = 464
     
     option :program
     
     before_body {
       @command_composites = []
-      self.program = Program.new(board_width: BOARD_WIDTH, board_height: BOARD_HEIGHT)
+      self.program = Program.new(canvas_width: DEFAULT_CANVAS_WIDTH, canvas_height: DEFAULT_CANVAS_HEIGHT)
       Display.app_name = 'Draw Color Repeat'
       Display.app_version = VERSION
       @display = display {
@@ -92,13 +92,13 @@ class Dcr
           end
         }
         @old_size ||= @command_container_scrolled_composite.size
-        pd @old_size.x, @old_size.y
-        pd @command_container.size.x, @command_container.size.y
+#         pd @old_size.x, @old_size.y
+#         pd @command_container.size.x, @command_container.size.y
 #         @command_container.pack(false)
         @command_container_scrolled_composite.set_min_size = Point.new(@command_container_scrolled_composite.min_width, TEXT_FONT_HEIGHT * @command_composites.size)
 #         @command_container_scrolled_composite.size = @old_size
-        pd @command_container_scrolled_composite.size.x, @command_container_scrolled_composite.size.y
-        pd @command_container_scrolled_composite.min_width, @command_container_scrolled_composite.min_height
+#         pd @command_container_scrolled_composite.size.x, @command_container_scrolled_composite.size.y
+#         pd @command_container_scrolled_composite.min_width, @command_container_scrolled_composite.min_height
 #         body_root.pack_same_size
       end
     }
@@ -107,8 +107,8 @@ class Dcr
     ## Top-most widget must be a shell or another custom shell
     #
     body {
-      shell(:no_resize) {
-        minimum_size BOARD_WIDTH, BOARD_HEIGHT + 316
+      shell {
+        minimum_size DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT + 316
 #         image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico") #if OS.windows?
         # TODO save this image to a file for packaging use
         image(512, 512) {
@@ -126,7 +126,16 @@ class Dcr
         }
         text "Draw Color Repeat"
         
+        on_swt_show {
+          if @body_root_shown.nil?
+            @body_root_shown = true
+            body_root.bounds = display.bounds
+          end
+        }
+        
         sash_form(:vertical) {
+          weights 2, 3
+          
           sash_form {
             @program_text = code_text(lines: true) { |code_text_proxy|
               font height: TEXT_FONT_HEIGHT, name: code_text_proxy.font.font_data[0].name
@@ -149,6 +158,11 @@ class Dcr
           @canvas_container = scrolled_composite(:none) {
             @canvas = canvas {
               background :white
+              
+              on_control_resized {
+                program.canvas_width = @canvas.bounds.width
+                program.canvas_height = @canvas.bounds.height
+              }
            
               # This is where drawn shapes are added
               @polygon_container = shape(0, 0, :max, :max)

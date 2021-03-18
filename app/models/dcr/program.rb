@@ -7,17 +7,27 @@ class Dcr
   class Program
     STICK_FIGURE_SIZE = 30
     
-    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle, :expanded_commands
+    attr_accessor :text, :commands, :canvas_width, :canvas_height, :location_x, :location_y, :angle, :expanded_commands
     
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
     
-    def initialize(text: '', board_width: nil, board_height: nil)
+    def initialize(text: '', canvas_width: 800, canvas_height: 600)
       @commands = []
-      @board_width = board_width
-      @board_height = board_height
+      @canvas_width = canvas_width
+      @canvas_height = canvas_height
       @text = text
       reset!
+    end
+    
+    def canvas_width=(new_width)
+      @canvas_width = new_width
+      calculate_polygons
+    end
+    
+    def canvas_height=(new_height)
+      @canvas_height = new_height
+      calculate_polygons
     end
     
     def text=(value)
@@ -40,8 +50,8 @@ class Dcr
     
     def reset_location!
       # also set stick_figure_location_x and stick_figure_location_y, which is slightly different
-      self.location_x = (board_width - STICK_FIGURE_SIZE) / 2.0
-      self.location_y = (board_height - STICK_FIGURE_SIZE) / 2.0
+      self.location_x = (canvas_width - STICK_FIGURE_SIZE) / 2.0
+      self.location_y = (canvas_height - STICK_FIGURE_SIZE) / 2.0
     end
     
     # Resets angle (0 means upward / north). Angle value is clockwise.

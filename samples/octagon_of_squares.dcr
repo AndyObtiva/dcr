@@ -1,7 +1,7 @@
 right
 forward 30
 repeat 2
+color
 right 45
 forward 60
 repeat 7
-color blue

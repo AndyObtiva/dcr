@@ -1,5 +1,6 @@
 # TODO
 
+- Make random color sequence always predictable for the same program (meaning if you share it with others, they get the same random colors)
 - Make drawing happen through the left hand of the stick figure (end of left arm)
 - Process commands as case-insensitive
 - Support concatenation of number to text (as tolerating error) (e.g. f3, backward9, right80)
@@ -26,6 +27,7 @@
 - Optimize performance for high repetition counts or show a dialog saying "redrawing" if redrawing takes too long (longer than 5 seconds) with a cancel button
 - Avoid re-duplicating polygons that already exist (thus optimizing performance)
 - Support easy listing/loading of included samples
+- Have one letter acronyms for colors
 
 ## Issues
 
