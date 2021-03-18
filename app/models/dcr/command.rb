@@ -58,21 +58,28 @@ class Dcr
     end
     
     def operation=(new_operation)
-      return if parse_operation(new_operation) == parsed_operation
-      @text.sub(parsed_operation, new_operation)
-      command_index_of_self = @program.commands.index(self)
-      @program.commands[command_index_of_self..command_index_of_self] = create(program: @program, text: @text)
+      return if new_operation == parsed_operation
+      @text.sub!(parsed_operation, new_operation)
+      update_command_in_program_text!
     end
     
     def value=(new_value)
-      return if parse_value(new_value) == parsed_value
-      @text.sub(parsed_value, new_value)
-      @program.notify_observers('commands')
+      new_value = new_value.to_s
+      return if new_value == parsed_value
+      @text.sub!(parsed_value.to_s, new_value)
+      update_command_in_program_text!
+    end
+      
+    def update_command_in_program_text!
+      command_index_of_self = @program.commands.index(self)
+      program_text = @program.text
+      program_text_lines = program_text.split("\n")
+      program_text_lines[command_index_of_self..command_index_of_self] = @text
+      @program.text = program_text_lines.join("\n")
     end
     
-    # Subclasses must override to provide parsed operation (e.g. 'f' becomes 'forward')
     def operation
-      parsed_operation
+      self.class.strategy_name
     end
     
     def parsed_operation
@@ -85,16 +92,15 @@ class Dcr
     
     # Subclasses must override to provide parsed value (e.g. 'r' becomes 'red' or '30' becomes 30)
     def value
-      parsed_value
-    end
-    
-    def parsed_value
-      parsed_value = Command.parse_value(@text)
       parsed_value.to_s.match(/\d+/) ? parsed_value.to_i : parsed_value
     end
     
+    def parsed_value
+      Command.parse_value(@text)
+    end
+    
     def normalized_text
-      "#{operation} #{value}"
+      operation == 'empty' ? '' : "#{operation} #{value}"
     end
     
     # Subclasses must implement

@@ -12,7 +12,7 @@ class Dcr
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
     
-    def initialize(text: '', board_width: 960, board_height: 284)
+    def initialize(text: '', board_width: nil, board_height: nil)
       @commands = []
       @board_width = board_width
       @board_height = board_height

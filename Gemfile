@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem 'glimmer-dsl-swt', '~> 4.18.7.6'
+gem 'glimmer-dsl-swt', '~> 4.19.0.0'
 gem 'glimmer-cp-stickfigure', '~> 0.1.1'
-gem 'strategic', '~> 0.9.0'
+gem 'strategic', '~> 0.9.1'
 gem 'equalizer', '~> 0.0.11'
 
 group :development do

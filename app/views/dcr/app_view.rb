@@ -4,11 +4,16 @@ class Dcr
   class AppView
     include Glimmer::UI::CustomShell
     
+    TEXT_FONT_HEIGHT = 30
+    GUI_FONT_HEIGHT = TEXT_FONT_HEIGHT - 7
+    BOARD_WIDTH = 960
+    BOARD_HEIGHT = 484
+    
     option :program
     
     before_body {
       @command_composites = []
-      self.program = Program.new(board_width: 960, board_height: 284)
+      self.program = Program.new(board_width: BOARD_WIDTH, board_height: BOARD_HEIGHT)
       Display.app_name = 'Draw Color Repeat'
       Display.app_version = VERSION
       @display = display {
@@ -22,26 +27,6 @@ class Dcr
     }
     
     after_body {
-      # TODO implement commands GUI
-#       observe(self, 'program.commands') do |new_commands|
-#         pd new_commands
-#         @command_composites.each(&:dispose)
-#         @program_composite.content {
-#           new_commands.each do |new_command|
-#             @command_composites << composite {
-#               row_layout
-#
-#               combo(:read_only) {
-#                 selection bind(new_command, :operation)
-#               }
-#
-#               text {
-#                 text bind(new_command, :value)
-#               }
-#             }
-#           end
-#         }
-#       end
       observe(self, 'program.polygons') do |new_polygons|
         if new_polygons != @last_polygons
           @polygon_container.shapes.dup.each(&:dispose)
@@ -64,6 +49,58 @@ class Dcr
           @last_polygons = new_polygons
         end
       end
+      
+      # TODO change algorithm to only spawn widgets if none exist already, otherwise, just unbind/rebind them (or bind them with nested binding to begin with)
+      observe(self, 'program.commands') do |new_commands|
+        @command_composites.each(&:dispose)
+        @command_composites.clear
+        @command_container.content {
+          new_commands.each do |new_command|
+            @command_composites << composite {
+              layout_data :fill, :center, true, false
+              grid_layout(2, true) {
+                margin_width 0
+                margin_height 0
+              }
+
+              c_combo(:read_only) {
+                layout_data :fill, :fill, true, true
+                selection bind(new_command, :operation)
+                font height: GUI_FONT_HEIGHT
+              }
+
+              if new_command.is_a?(Dcr::Command::Empty)
+                label {
+                  layout_data :fill, :fill, true, true
+                  # just a filler as no value is needed here
+                }
+              elsif new_command.value.is_a?(Numeric)
+                spinner {
+                  layout_data :fill, :fill, true, true
+                  maximum 100_000
+                  selection bind(new_command, :value)
+                  font height: GUI_FONT_HEIGHT
+                }
+              else
+                text {
+                  layout_data :fill, :fill, true, true
+                  text bind(new_command, :value)
+                  font height: GUI_FONT_HEIGHT
+                }
+              end
+            }
+          end
+        }
+        @old_size ||= @command_container_scrolled_composite.size
+        pd @old_size.x, @old_size.y
+        pd @command_container.size.x, @command_container.size.y
+#         @command_container.pack(false)
+        @command_container_scrolled_composite.set_min_size = Point.new(@command_container_scrolled_composite.min_width, TEXT_FONT_HEIGHT * @command_composites.size)
+#         @command_container_scrolled_composite.size = @old_size
+        pd @command_container_scrolled_composite.size.x, @command_container_scrolled_composite.size.y
+        pd @command_container_scrolled_composite.min_width, @command_container_scrolled_composite.min_height
+#         body_root.pack_same_size
+      end
     }
 
     ## Add widget content inside custom shell body
@@ -71,7 +108,7 @@ class Dcr
     #
     body {
       shell(:no_resize) {
-        minimum_size 960, 600
+        minimum_size BOARD_WIDTH, BOARD_HEIGHT + 316
 #         image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico") #if OS.windows?
         # TODO save this image to a file for packaging use
         image(512, 512) {
@@ -92,10 +129,22 @@ class Dcr
         sash_form(:vertical) {
           sash_form {
             @program_text = code_text(lines: true) { |code_text_proxy|
-              font height: 30, name: code_text_proxy.font.font_data[0].name
+              font height: TEXT_FONT_HEIGHT, name: code_text_proxy.font.font_data[0].name
               text bind(self, 'program.text')
+              top_margin 0
+              bottom_margin 0
             }
-            @program_composite = composite
+            composite {
+              fill_layout
+              @command_container_scrolled_composite = scrolled_composite {
+                @command_container = composite {
+                  grid_layout(1, false) {
+                    margin_width 0
+                    margin_height 0
+                  }
+                }
+              }
+            }
           }
           @canvas_container = scrolled_composite(:none) {
             @canvas = canvas {

@@ -32,7 +32,7 @@ GEM
       facets (>= 3.1.0, < 4.0.0)
     glimmer-cp-stickfigure (0.1.1)
       glimmer-dsl-swt (>= 4.18.7.5, < 5.0.0.0)
-    glimmer-dsl-swt (4.18.7.6)
+    glimmer-dsl-swt (4.19.0.0)
       glimmer (~> 1.2.0)
       logging (>= 2.3.0, < 3.0.0)
       nested_inherited_jruby_include_package (>= 0.3.0, < 2.0.0)
@@ -118,7 +118,7 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
-    strategic (0.9.0)
+    strategic (0.9.1)
     super_module (1.4.1)
       method_source (>= 0.8.2, < 1.1.0)
     text-table (1.2.4)
@@ -146,11 +146,11 @@ PLATFORMS
 DEPENDENCIES
   equalizer (~> 0.0.11)
   glimmer-cp-stickfigure (~> 0.1.1)
-  glimmer-dsl-swt (~> 4.18.7.6)
+  glimmer-dsl-swt (~> 4.19.0.0)
   juwelier (= 2.4.9)
   rspec (~> 3.5.0)
   simplecov
-  strategic (~> 0.9.0)
+  strategic (~> 0.9.1)
   warbler (= 2.0.5)
 
 BUNDLED WITH
