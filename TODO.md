@@ -1,6 +1,5 @@
 # TODO
 
-- Make random color sequence always predictable for the same program (meaning if you share it with others, they get the same random colors)
 - Make drawing happen through the left hand of the stick figure (end of left arm)
 - Process commands as case-insensitive
 - Support concatenation of number to text (as tolerating error) (e.g. f3, backward9, right80)

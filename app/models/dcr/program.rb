@@ -46,6 +46,7 @@ class Dcr
       reset_location!
       reset_angle!
       reset_polygons!
+      reset_next_color_index!
     end
     
     def reset_location!
@@ -66,6 +67,10 @@ class Dcr
     
     def new_polygon!
       @polygons << Polygon.new(location_x, location_y)
+    end
+    
+    def reset_next_color_index!
+      Command::Color.reset_next_color_index!
     end
     
     private

@@ -1,0 +1,9 @@
+forward 160
+
+right 110
+forward 180
+repeat 30
+color
+right 110
+forward 360
+repeat 8

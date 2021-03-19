@@ -337,6 +337,26 @@ Screenshot:
 
 ![circle of circles](/images/dcr-samples-circle-of-circles.png)
 
+### Nine Sided Pattern
+
+DCR Code:
+
+```ruby
+forward 160
+
+right 110
+forward 180
+repeat 30
+color
+right 110
+forward 360
+repeat 8
+```
+
+Screenshot:
+
+![nine sided pattern](/images/dcr-samples-nine-sided-pattern.png)
+
 ### Deck of Cards
 
 DCR Code:

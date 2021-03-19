@@ -91,11 +91,11 @@ class Dcr
             }
           end
         }
-        @old_size ||= @command_container_scrolled_composite.size
+#         @old_size ||= @command_container_scrolled_composite.size
 #         pd @old_size.x, @old_size.y
 #         pd @command_container.size.x, @command_container.size.y
 #         @command_container.pack(false)
-        @command_container_scrolled_composite.set_min_size = Point.new(@command_container_scrolled_composite.min_width, TEXT_FONT_HEIGHT * @command_composites.size)
+#         @command_container_scrolled_composite.set_min_size = Point.new(@command_container_scrolled_composite.min_width, TEXT_FONT_HEIGHT * @command_composites.size)
 #         @command_container_scrolled_composite.size = @old_size
 #         pd @command_container_scrolled_composite.size.x, @command_container_scrolled_composite.size.y
 #         pd @command_container_scrolled_composite.min_width, @command_container_scrolled_composite.min_height
@@ -109,21 +109,7 @@ class Dcr
     body {
       shell {
         minimum_size DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT + 316
-#         image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico") #if OS.windows?
-        # TODO save this image to a file for packaging use
-        image(512, 512) {
-          rectangle(0, 0, :max, :max) {
-            background :white
-          }
-          stick_figure(
-                location_x: 0,
-                location_y: 50,
-                size: 425,
-              ) {
-            line_width 10
-            foreground :black
-          }
-        }
+        image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico") #if OS.windows?
         text "Draw Color Repeat"
         
         on_swt_show {
@@ -135,17 +121,23 @@ class Dcr
         
         sash_form(:vertical) {
           weights 2, 3
+          sash_width 10
+          background rgb(230, 230, 230)
           
-          sash_form {
-            @program_text = code_text(lines: true) { |code_text_proxy|
-              font height: TEXT_FONT_HEIGHT, name: code_text_proxy.font.font_data[0].name
-              text bind(self, 'program.text')
-              top_margin 0
-              bottom_margin 0
-            }
-            composite {
-              fill_layout
-              @command_container_scrolled_composite = scrolled_composite {
+          @command_scrolled_composite = scrolled_composite {
+            sash_form {
+              sash_width 10
+              background rgb(230, 230, 230)
+              
+              @program_text = code_text(lines: true) { |code_text_proxy|
+                font height: TEXT_FONT_HEIGHT, name: code_text_proxy.font.font_data[0].name
+                text bind(self, 'program.text')
+                top_margin 0
+                bottom_margin 0
+              }
+              composite {
+                fill_layout
+                                
                 @command_container = composite {
                   grid_layout(1, false) {
                     margin_width 0

@@ -36,8 +36,13 @@ class Dcr
         end
       
         def next_color
-          @next_color_index = @next_color_index.nil? ? 0 : @next_color_index + 1
+          reset_next_color_index! if @next_color_index.nil?
+          @next_color_index += 1
           unique_colors[@next_color_index % unique_colors.count]
+        end
+        
+        def reset_next_color_index!
+          @next_color_index = 0
         end
         
         def unique_colors
