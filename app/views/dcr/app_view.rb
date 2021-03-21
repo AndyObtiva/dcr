@@ -155,7 +155,7 @@ class Dcr
     body {
       shell {
         minimum_size DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT + 316
-        image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico")
+        image File.join(APP_ROOT, 'package', 'windows', "Draw Color Repeat.ico")
         text "Draw Color Repeat"
         
         on_swt_show {
