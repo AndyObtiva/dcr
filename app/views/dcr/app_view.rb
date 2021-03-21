@@ -1,3 +1,24 @@
+# Copyright (c) 2021 Andy Maleh
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
 require 'models/dcr/program'
 
 class Dcr
@@ -50,47 +71,48 @@ class Dcr
         end
       end
       
+      # TODO implement command GUI in version 1.1+
       # TODO change algorithm to only spawn widgets if none exist already, otherwise, just unbind/rebind them (or bind them with nested binding to begin with)
-      observe(self, 'program.commands') do |new_commands|
-        @command_composites.each(&:dispose)
-        @command_composites.clear
-        @command_container.content {
-          new_commands.each do |new_command|
-            @command_composites << composite {
-              layout_data :fill, :center, true, false
-              grid_layout(2, true) {
-                margin_width 0
-                margin_height 0
-              }
-
-              c_combo(:read_only) {
-                layout_data :fill, :fill, true, true
-                selection bind(new_command, :operation)
-                font height: GUI_FONT_HEIGHT
-              }
-
-              if new_command.is_a?(Dcr::Command::Empty)
-                label {
-                  layout_data :fill, :fill, true, true
-                  # just a filler as no value is needed here
-                }
-              elsif new_command.value.is_a?(Numeric)
-                spinner {
-                  layout_data :fill, :fill, true, true
-                  maximum 100_000
-                  selection bind(new_command, :value)
-                  font height: GUI_FONT_HEIGHT
-                }
-              else
-                text {
-                  layout_data :fill, :fill, true, true
-                  text bind(new_command, :value)
-                  font height: GUI_FONT_HEIGHT
-                }
-              end
-            }
-          end
-        }
+#       observe(self, 'program.commands') do |new_commands|
+#         @command_composites.each(&:dispose)
+#         @command_composites.clear
+#         @command_container.content {
+#           new_commands.each do |new_command|
+#             @command_composites << composite {
+#               layout_data :fill, :center, true, false
+#               grid_layout(2, true) {
+#                 margin_width 0
+#                 margin_height 0
+#               }
+#
+#               c_combo(:read_only) {
+#                 layout_data :fill, :fill, true, true
+#                 selection bind(new_command, :operation)
+#                 font height: GUI_FONT_HEIGHT
+#               }
+#
+#               if new_command.is_a?(Dcr::Command::Empty)
+#                 label {
+#                   layout_data :fill, :fill, true, true
+#                   ### just a filler as no value is needed here
+#                 }
+#               elsif new_command.value.is_a?(Numeric)
+#                 spinner {
+#                   layout_data :fill, :fill, true, true
+#                   maximum 100_000
+#                   selection bind(new_command, :value)
+#                   font height: GUI_FONT_HEIGHT
+#                 }
+#               else
+#                 text {
+#                   layout_data :fill, :fill, true, true
+#                   text bind(new_command, :value)
+#                   font height: GUI_FONT_HEIGHT
+#                 }
+#               end
+#             }
+#           end
+#         }
 #         @old_size ||= @command_container_scrolled_composite.size
 #         pd @old_size.x, @old_size.y
 #         pd @command_container.size.x, @command_container.size.y
@@ -100,7 +122,7 @@ class Dcr
 #         pd @command_container_scrolled_composite.size.x, @command_container_scrolled_composite.size.y
 #         pd @command_container_scrolled_composite.min_width, @command_container_scrolled_composite.min_height
 #         body_root.pack_same_size
-      end
+#       end
     }
 
     ## Add widget content inside custom shell body
@@ -109,7 +131,7 @@ class Dcr
     body {
       shell {
         minimum_size DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT + 316
-        image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico") #if OS.windows?
+        image File.join(APP_ROOT, 'package', 'windows', "Dcr.ico")
         text "Draw Color Repeat"
         
         on_swt_show {
@@ -187,7 +209,7 @@ class Dcr
     def display_about_dialog
       message_box(body_root) {
         text 'About'
-        message "Draw Color Repeat #{VERSION}\n\n#{LICENSE}"
+        message "The DCR Programming Language (Draw Color Repeat) #{VERSION}\n\n#{LICENSE}"
       }.open
     end
   

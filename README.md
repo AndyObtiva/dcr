@@ -18,9 +18,9 @@ This programming language is automatically executed while commands are being ent
 
 Any invalid commands or values are simply ignored, so the programming language never errors.
 
-If a partial command is entered (e.g. `lef` for `left` or `rig` for `right`), it is interpreted as the full command.
+If a partial command is entered (e.g. `lef` for `left` or `rgh` for `right`), it is interpreted as the full command.
 
-If a partial color value is entered (e.g. `gree` for `green` or `r` for `red`), it is interpreted as the full color value.
+If a partial color value is entered (e.g. `gree` for `green` or `rd` for `red`), it is interpreted as the full color value.
 
 If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g. `90` degrees).
 
@@ -283,6 +283,38 @@ color yellow
 Screenshot:
 
 ![aztec pyramid](/images/dcr-samples-aztec-pyramid.png)
+
+### Stick Figure
+
+DCR Code:
+
+```ruby
+right 65
+forward 70
+backward 70
+left 130
+forward 70
+backward 70
+right 65
+forward 30
+right
+
+left 4
+forward 1
+repeat 90
+
+right 94
+forward 80
+right 55
+forward 90
+backward 90
+left 110
+forward 90
+```
+
+Screenshot:
+
+![stick figure](/images/dcr-samples-stick-figure.png)
 
 ### Octagon of Squares
 
