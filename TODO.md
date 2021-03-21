@@ -4,7 +4,9 @@
 
 ### 1.0.0
 
-- Move stick figure async
+- When redrawing, do not repeat already drawn shapes if included in new set
+- Consider switching polygons to lines to show stick figure drawing every line
+- Consider doing model recalculations in a separate thread
 - Process commands as case-insensitive
 - Have single letter acronyms for colors
 - Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)

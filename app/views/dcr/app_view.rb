@@ -50,28 +50,48 @@ class Dcr
     after_body {
       observe(self, 'program.polygons') do |new_polygons|
         if new_polygons != @last_polygons
+          @last_polygons = new_polygons
+          program_location_x = program.location_x
+          program_location_y = program.location_y
           async_exec {
-            @polygon_container.shapes.dup.each {|shape| shape.dispose(redraw: @polygon_container.shapes.count == 1)}
+            @polygon_container.shapes.dup.each {|shape| shape.dispose(redraw: @polygon_container.shapes.count == 1)} unless new_polygons != @last_polygons
           }
-          new_polygons.each { |new_polygon|
-            async_exec {
-              @polygon_container.content {
-                if new_polygon.background.nil?
-                  polyline(new_polygon.point_array) {
-                    foreground :black
-                  }
-                else
-                  polygon(new_polygon.point_array) {
-                    background new_polygon.background
-                  }
-                  polygon(new_polygon.point_array) {
-                    foreground :black
-                  }
-                end
+          new_polygons.each_with_index { |new_polygon, polygon_index|
+            unless new_polygons.count == 1 || polygon_index == (new_polygons.count - 1)
+              (new_polygon.point_array.count / 2).times {|point_index|
+                async_exec {
+                  program.location_x = new_polygon.point_array[point_index*2] unless new_polygons != @last_polygons
+                }
+                async_exec {
+                  program.location_y = new_polygon.point_array[point_index*2 + 1] unless new_polygons != @last_polygons
+                }
               }
+            end
+            async_exec {
+              unless new_polygons != @last_polygons
+                @polygon_container.content {
+                  if new_polygon.background.nil?
+                    polyline(new_polygon.point_array) {
+                      foreground :black
+                    }
+                  else
+                    polygon(new_polygon.point_array) {
+                      background new_polygon.background
+                    }
+                    polygon(new_polygon.point_array) {
+                      foreground :black
+                    }
+                  end
+                }
+              end
             }
           }
-          @last_polygons = new_polygons
+          async_exec {
+            program.location_x = program_location_x unless new_polygons != @last_polygons
+          }
+          async_exec {
+            program.location_y = program_location_y unless new_polygons != @last_polygons
+          }
         end
       end
       
@@ -191,8 +211,8 @@ class Dcr
                 size: Program::STICK_FIGURE_SIZE,
               ) {
                 # translate coordinate values in converters to touch the drawing point with the hand of the stick figure
-                location_x bind(self, 'program.location_x') {|value| value - 6}
-                location_y bind(self, 'program.location_y') {|value| value - 6}
+                location_x bind(self, 'program.location_x', read_only: true) {|value| value - 6}
+                location_y bind(self, 'program.location_y', read_only: true) {|value| value - 6}
               }
               
 #               @compass = shape {
