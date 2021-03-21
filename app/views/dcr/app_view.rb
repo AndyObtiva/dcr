@@ -142,7 +142,7 @@ class Dcr
         }
         
         sash_form(:horizontal) {
-          weights 2, 3
+          weights 2, 4
           sash_width 10
           background rgb(230, 230, 230)
           
@@ -187,8 +187,9 @@ class Dcr
               @stick_figure = stick_figure(
                 size: Program::STICK_FIGURE_SIZE,
               ) {
-                location_x bind(self, 'program.location_x')
-                location_y bind(self, 'program.location_y')
+                # translate coordinate values in converters to touch the drawing point with the hand of the stick figure
+                location_x bind(self, 'program.location_x') {|value| value - 6}
+                location_y bind(self, 'program.location_y') {|value| value - 6}
               }
             }
           }

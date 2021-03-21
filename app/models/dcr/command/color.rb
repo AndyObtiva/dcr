@@ -63,7 +63,7 @@ class Dcr
         end
         
         def reset_next_color_index!
-          @next_color_index = 0
+          @next_color_index = -2 # start at yellow (since it skips one with the first addition)
         end
         
         def unique_colors
