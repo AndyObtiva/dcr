@@ -141,15 +141,16 @@ class Dcr
           end
         }
         
-        sash_form(:vertical) {
+        sash_form(:horizontal) {
           weights 2, 3
           sash_width 10
           background rgb(230, 230, 230)
           
-          @command_scrolled_composite = scrolled_composite {
-            sash_form {
-              sash_width 10
-              background rgb(230, 230, 230)
+          # TODO enable for version 1.1+
+#           @command_scrolled_composite = scrolled_composite {
+#             sash_form {
+#               sash_width 10
+#               background rgb(230, 230, 230)
               
               @program_text = code_text(lines: true) { |code_text_proxy|
                 font height: TEXT_FONT_HEIGHT, name: code_text_proxy.font.font_data[0].name
@@ -157,18 +158,19 @@ class Dcr
                 top_margin 0
                 bottom_margin 0
               }
-              composite {
-                fill_layout
-                                
-                @command_container = composite {
-                  grid_layout(1, false) {
-                    margin_width 0
-                    margin_height 0
-                  }
-                }
-              }
-            }
-          }
+          # TODO enable for version 1.1+
+#               composite {
+#                 fill_layout
+#
+#                 @command_container = composite {
+#                   grid_layout(1, false) {
+#                     margin_width 0
+#                     margin_height 0
+#                   }
+#                 }
+#               }
+#             }
+#           }
           @canvas_container = scrolled_composite(:none) {
             @canvas = canvas {
               background :white

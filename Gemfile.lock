@@ -32,12 +32,12 @@ GEM
       facets (>= 3.1.0, < 4.0.0)
     glimmer-cp-stickfigure (0.1.1)
       glimmer-dsl-swt (>= 4.18.7.5, < 5.0.0.0)
-    glimmer-dsl-swt (4.18.7.5)
+    glimmer-dsl-swt (4.18.7.6)
       glimmer (~> 1.2.0)
       logging (>= 2.3.0, < 3.0.0)
       nested_inherited_jruby_include_package (>= 0.3.0, < 2.0.0)
       os (>= 1.0.0, < 2.0.0)
-      puts_debuggerer (>= 0.11.0, < 2.0.0)
+      puts_debuggerer (>= 0.12.0, < 2.0.0)
       rake (>= 10.1.0, < 14.0.0)
       rake-tui (>= 0.2.3, < 2.0.0)
       rouge (>= 3.26.0, < 4.0.0)
@@ -146,7 +146,7 @@ PLATFORMS
 DEPENDENCIES
   equalizer (~> 0.0.11)
   glimmer-cp-stickfigure (~> 0.1.1)
-  glimmer-dsl-swt (= 4.18.7.5)
+  glimmer-dsl-swt (~> 4.18.7.5)
   juwelier (= 2.4.9)
   rspec (~> 3.5.0)
   simplecov

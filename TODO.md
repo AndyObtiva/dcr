@@ -4,7 +4,6 @@
 
 ### 1.0.0
 
-- Adjust layout given we do not have a command GUI in this version (put drawing to the right of the commands)
 - Make drawing happen through the left hand of the stick figure (end of left arm)
 - Show an arrow in the direction the stick figure is going next
 - Process commands as case-insensitive
