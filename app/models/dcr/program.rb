@@ -26,7 +26,24 @@ class Dcr
   # A DCR program that takes text (representing commands) and board width/height for drawing polygons
   # It has a current location (x/y) and angle. Angle is clockwise, with 0 being upward (north).
   class Program
+    include Glimmer::DataBinding::ObservableModel
+    
     STICK_FIGURE_SIZE = 30
+    PROGRAM_TEXT_DIRECTION_ARROW = <<~DCR
+    
+        
+      f 18
+      r 150
+      f 4
+      b 4
+      l 300
+      f 4
+      b 4
+      r 150
+      b 18
+      
+      
+    DCR
     
     attr_accessor :text, :commands, :canvas_width, :canvas_height, :location_x, :location_y, :angle, :expanded_commands
     
@@ -37,8 +54,8 @@ class Dcr
       @commands = []
       @canvas_width = canvas_width
       @canvas_height = canvas_height
-      @text = text
       reset!
+      self.text = text
     end
     
     def canvas_width=(new_width)
@@ -97,7 +114,7 @@ class Dcr
     private
     
     def parse_commands
-      self.commands = text.split("\n").map do |command_text|
+      self.commands = (text + PROGRAM_TEXT_DIRECTION_ARROW).split("\n").map do |command_text|
         Command.create(program: self, text: command_text)
       end
     end

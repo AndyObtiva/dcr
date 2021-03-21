@@ -152,12 +152,12 @@ class Dcr
 #               sash_width 10
 #               background rgb(230, 230, 230)
               
-              @program_text = code_text(lines: true) { |code_text_proxy|
-                font height: TEXT_FONT_HEIGHT, name: code_text_proxy.font.font_data[0].name
-                text bind(self, 'program.text')
-                top_margin 0
-                bottom_margin 0
-              }
+          @program_text = code_text(lines: true) { |code_text_proxy|
+            font height: TEXT_FONT_HEIGHT, name: code_text_proxy.font.font_data[0].name
+            text bind(self, 'program.text')
+            top_margin 0
+            bottom_margin 0
+          }
           # TODO enable for version 1.1+
 #               composite {
 #                 fill_layout
@@ -183,7 +183,6 @@ class Dcr
               # This is where drawn shapes are added
               @polygon_container = shape(0, 0, :max, :max)
               
-              # TODO show arrow pointing in the right direction (based on program.angle)
               @stick_figure = stick_figure(
                 size: Program::STICK_FIGURE_SIZE,
               ) {
@@ -191,6 +190,18 @@ class Dcr
                 location_x bind(self, 'program.location_x') {|value| value - 6}
                 location_y bind(self, 'program.location_y') {|value| value - 6}
               }
+              
+#               @compass = shape {
+#                 x bind(self, 'program.location_x') {|value| value - 10 }
+#                 y bind(self, 'program.location_y') {|value| value - 16}
+#                 transform {
+#                   rotate bind(self, 'program.angle')
+#                 }
+#
+#                 line(10, 0, 10, 18)
+#                 line(10, 0, 6, 6)
+#                 line(10, 0, 14, 6)
+#               }
             }
           }
         }

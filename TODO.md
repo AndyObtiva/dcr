@@ -4,7 +4,6 @@
 
 ### 1.0.0
 
-- Show an arrow in the direction the stick figure is going next
 - Process commands as case-insensitive
 - Have single letter acronyms for colors
 - Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)
