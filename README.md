@@ -215,7 +215,7 @@ Screenshot:
 
 ![five pointed star](/images/dcr-samples-five-pointed-star.png)
 
-### Eight Pointed Star
+### Sherrif Badge Star
 
 DCR Code:
 
@@ -230,7 +230,7 @@ color yellow
 
 Screenshot:
 
-![eight pointed star](/images/dcr-samples-eight-pointed-star.png)
+![sherrif badge star](/images/dcr-samples-sherrif-badge-star.png)
 
 ### Stairs
 
@@ -484,6 +484,23 @@ color grey
 Screenshot:
 
 ![house](/images/dcr-samples-house.png)
+
+### Spider Web
+
+DCR Code:
+
+```ruby
+right 10
+forward 180
+repeat 35
+right 110
+forward 260
+repeat 35
+```
+
+Screenshot:
+
+![house](/images/dcr-samples-spider-web.png)
 
 ## Contributing to dcr
 

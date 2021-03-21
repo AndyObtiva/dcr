@@ -50,22 +50,26 @@ class Dcr
     after_body {
       observe(self, 'program.polygons') do |new_polygons|
         if new_polygons != @last_polygons
-          @polygon_container.shapes.dup.each(&:dispose)
-          @polygon_container.content {
-            new_polygons.each do |new_polygon|
-              if new_polygon.background.nil?
-                polyline(new_polygon.point_array) {
-                  foreground :black
-                }
-              else
-                polygon(new_polygon.point_array) {
-                  background new_polygon.background
-                }
-                polygon(new_polygon.point_array) {
-                  foreground :black
-                }
-              end
-            end
+          async_exec {
+            @polygon_container.shapes.dup.each {|shape| shape.dispose(redraw: @polygon_container.shapes.count == 1)}
+          }
+          new_polygons.each { |new_polygon|
+            async_exec {
+              @polygon_container.content {
+                if new_polygon.background.nil?
+                  polyline(new_polygon.point_array) {
+                    foreground :black
+                  }
+                else
+                  polygon(new_polygon.point_array) {
+                    background new_polygon.background
+                  }
+                  polygon(new_polygon.point_array) {
+                    foreground :black
+                  }
+                end
+              }
+            }
           }
           @last_polygons = new_polygons
         end

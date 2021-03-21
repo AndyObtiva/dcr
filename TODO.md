@@ -4,13 +4,13 @@
 
 ### 1.0.0
 
+- Move stick figure async
 - Process commands as case-insensitive
 - Have single letter acronyms for colors
 - Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)
 - Load program (start at samples path)
 - Extract samples from jar in packaged app run
-- Optimize performance for high repetition counts or show a dialog saying "redrawing" if redrawing takes too long (longer than 5 seconds) with a cancel button
-- Consider drawing async
+- Optimize performance for high repetition counts or show a dialog saying "Busy Drawing... Please be patient!" if redrawing takes too long (longer than 5 seconds) with a cancel button
 - Ensure there are 24 samples total (implement 4 more samples that fill the screen mostly with one filling it entirely)
 
 ### TBD
@@ -28,9 +28,9 @@
 - Undo/Redo support
 - Make any command that fails to be interpreted an empty command (that way we can add comments)
 - Extract string fuzz matching algorithm into its own Ruby gem
-- Consider delaying execution by a 200 milliseconds while typing
 - Avoid re-duplicating polygons that already exist (thus optimizing performance)
 - Support easy listing/loading of included samples
+- Consider delaying execution by a 200 milliseconds while typing
 
 ## Issues
 
