@@ -71,7 +71,7 @@ class Dcr
       end
     end
     
-    attr_reader :text
+    attr_reader :program, :text
       
     def initialize(program: , text: )
       @program = program

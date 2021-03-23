@@ -4,10 +4,8 @@
 
 ### 1.0.0
 
-- When redrawing, do not repeat already drawn shapes if included in new set
-- Consider switching polygons to lines to show stick figure drawing every line
+- Look into why applying color at the end of a polygon makes the arrow disappear
 - Consider doing model recalculations in a separate thread
-- Process commands as case-insensitive
 - Have single letter acronyms for colors
 - Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)
 - Load program (start at samples path)

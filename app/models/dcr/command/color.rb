@@ -35,13 +35,25 @@ class Dcr
         'red' => :red,
         'white' => :white,
         'yellow' => :yellow,
+        'k' => :black,
+        'b' => :cyan,
+        'a' => :gray,
+        'g' => :green,
+        'o' => [255, 127, 0],
+        'i' => :magenta,
+        'p' => :dark_magenta,
+        'r' => :red,
+        'w' => :white,
+        'y' => :yellow,
       }
       command_alias 'c'
       command_exclusion 'r'
       
       class << self
+        attr_reader :next_color_index
+          
         def expanded_color_map
-          @expanded_color_map = COLOR_MAP.reduce({}) do |hash, pair|
+          @expanded_color_map ||= COLOR_MAP.reduce({}) do |hash, pair|
             color_string = pair.first
             color_value = pair.last
             color_hash = color_derivatives(color_string).reduce({}) do |color_derivative_hash, color_derivative|
@@ -62,8 +74,8 @@ class Dcr
           unique_colors[@next_color_index % unique_colors.count]
         end
         
-        def reset_next_color_index!
-          @next_color_index = -2 # start at yellow (since it skips one with the first addition)
+        def reset_next_color_index!(next_color_index_value=nil)
+          @next_color_index = next_color_index_value || -2 # start at yellow (since it skips one with the first addition)
         end
         
         def unique_colors

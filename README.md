@@ -37,16 +37,16 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 ### Coloring
 
 - `color` (or `c`): Color the shape already drawn by closing it and filling it with a random or specified color from the following list (e.g. `color`, `color red`, or `c red`):
-  - `black`
-  - `blue`
-  - `grey`
-  - `green`
-  - `orange`
-  - `pink`
-  - `purple`
-  - `red`
-  - `white`
-  - `yellow`
+  - `black` (or `k`)
+  - `blue` (or `b`)
+  - `gray` (or `a`)
+  - `green` (or `g`)
+  - `orange` (or `o`)
+  - `pink` (or `i`)
+  - `purple` (or `p`)
+  - `red` (or `r`)
+  - `white` (or `w`)
+  - `yellow` (or `y`)
   
 ### Repetition
 
@@ -478,7 +478,7 @@ forward 40
 right
 forward 70
 right
-color grey
+color gray
 ```
 
 Screenshot:
