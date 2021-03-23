@@ -49,17 +49,13 @@ class Dcr
     
     after_body {
       observe(self, 'program.polygons') do |new_polygons|
-#         pd new_polygons
         if new_polygons != @last_polygons
-#           pd 'new polygons changed'
-#           pd new_polygons
           last_polygons = @last_polygons
           @last_polygons = new_polygons
           program_location_x = program.location_x
           program_location_y = program.location_y
           shape_polygons_disposed = false
           new_polygon_encountered = false
-#           pd 'backed up program location', program_location_x, program_location_y
           new_polygons.each_with_index { |new_polygon, polygon_index|
             if new_polygon_encountered || new_polygon != last_polygons.to_a[polygon_index]
               new_polygon_encountered = true
@@ -67,11 +63,9 @@ class Dcr
                 shape_polygons_disposed = true
                 async_exec {
                   unless new_polygons != @last_polygons
-#                     pd polygon_index
                     polygon_shape_index = new_polygons[0...polygon_index].map {|shape_polygon| shape_polygon.background.nil? ? 1 : 2 }.sum
                     shapes_to_dispose = @polygon_container.shapes.to_a[polygon_shape_index..-1].dup
                     shapes_to_dispose.to_a.each_with_index { |shape, shape_index|
-#                       pd 'redraw' if shape_index == (shapes_to_dispose.count - 1)
                       shape.dispose(redraw: shape_index == (shapes_to_dispose.count - 1))
                     }
                   end
@@ -91,7 +85,6 @@ class Dcr
                 async_exec {
                   unless new_polygons != @last_polygons
                     @polygon_container.content {
-#                       pd 'polyline', new_polygon
                       polyline(new_polygon.point_array) {
                         foreground :black
                       }
@@ -102,16 +95,9 @@ class Dcr
                 async_exec {
                   unless new_polygons != @last_polygons
                     @polygon_container.content {
-#                       pd 'polygon', new_polygon
                       polygon(new_polygon.point_array) {
                         background new_polygon.background
                       }
-                    }
-                  end
-                }
-                async_exec {
-                  unless new_polygons != @last_polygons
-                    @polygon_container.content {
                       polygon(new_polygon.point_array) {
                         foreground :black
                       }
@@ -122,11 +108,9 @@ class Dcr
             end
           }
           async_exec {
-#             pd 'restoring program location x', program_location_x unless new_polygons != @last_polygons
             program.location_x = program_location_x unless new_polygons != @last_polygons
           }
           async_exec {
-#             pd 'restoring program location y', program_location_y unless new_polygons != @last_polygons
             program.location_y = program_location_y unless new_polygons != @last_polygons
           }
         end

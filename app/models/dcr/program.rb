@@ -91,7 +91,6 @@ class Dcr
     end
     
     def reset_location!
-#       pd 'reset location'
       # also set stick_figure_location_x and stick_figure_location_y, which is slightly different
       @last_location_x = location_x
       @last_location_y = location_y
@@ -101,28 +100,22 @@ class Dcr
     
     # Resets angle (0 means upward / north). Angle value is clockwise.
     def reset_angle!
-#       pd 'reset angle'
       @last_angle = angle
       self.angle = 0 # means pointing upward (north)
     end
     
     def reset_polygons!
-#       pd 'reset polygons'
       # reset quietly via instance variable without alerting observers with attribute writer method
       @polygons = [Polygon.new(location_x, location_y)]
-#       pd 'done reset polygons'
     end
     
     def new_polygon!
-#       pd 'new polygon'
       @polygons << Polygon.new(location_x, location_y)
     end
     
     def reset_next_color_index!
-#       pd 'reset next color index!'
       @last_color_index = Command::Color.next_color_index
       Command::Color.reset_next_color_index!
-#       pd 'done reset next color index!'
     end
     
     private
@@ -134,45 +127,23 @@ class Dcr
     end
     
     def calculate_polygons
-#       pd location_x
-#       pd location_y
       reset!
       expand_commands!
       last_expanded_commands = @last_expanded_commands
       @last_expanded_commands = expanded_commands.dup
       callable_expanded_commands = expanded_commands
-#       pd last_expanded_commands
-#       pd expanded_commands
-#       pd commands_without_arrow(last_expanded_commands)
-#       pd commands_without_arrow(expanded_commands)
-      # TODO avoid include_all? in favor of manual comparison because of the equals method being designed not to work for this sort of equality
-#       pd commands_without_arrow(expanded_commands)&.include_all?(commands_without_arrow(last_expanded_commands))
-#       if commands_without_arrow(expanded_commands)&.include_all?(commands_without_arrow(last_expanded_commands))
-#         pd self.location_x, self.location_y, self.angle
-#         self.location_x = @last_location_x if @last_location_x
-#         self.location_y = @last_location_y if @last_location_y
-#         self.angle = @last_angle if @last_angle
-#         Command::Color.reset_next_color_index!(@last_color_index)
-#         pd self.location_x, self.location_y, self.angle
-#         callable_expanded_commands = expanded_commands[commands_without_arrow(last_expanded_commands).count..-1]
-#         pd 'reusing last polygons'
-#         pd @polygons
-#         @polygons = @last_polygons
-#         pd @polygons
-#         pd 'deleting arrow'
-#         delete_arrow!
-#         pd @polygons
-#       end
-#       pd callable_expanded_commands
-#       pd location_x, location_y, angle
-      callable_expanded_commands.each do |command|
-#         pd command, header: '>>>>>> COMMAND >>>>>>'
-#         pd 'calculating polygons (printing polygons before:)', @polygons
-        command.call
-#         pd 'calculated polygons (printing polygons after:)', @polygons
+      expanded_commands_without_arrow = commands_without_arrow(expanded_commands)
+      expanded_commands_without_arrow_subset_matching_last_commands = expanded_commands_without_arrow && commands_without_arrow(last_expanded_commands) && expanded_commands_without_arrow[commands_without_arrow(last_expanded_commands).count..-1]
+      if expanded_commands_without_arrow_subset_matching_last_commands && expanded_commands_without_arrow_subset_matching_last_commands.map(&:text) == commands_without_arrow(last_expanded_commands)&.map(&:text)
+        self.location_x = @last_location_x if @last_location_x
+        self.location_y = @last_location_y if @last_location_y
+        self.angle = @last_angle if @last_angle
+        Command::Color.reset_next_color_index!(@last_color_index)
+        callable_expanded_commands = expanded_commands[commands_without_arrow(last_expanded_commands).count..-1]
+        @polygons = @last_polygons
+        delete_arrow!
       end
-#       pd location_x, location_y, angle
-#       pd @polygons
+      callable_expanded_commands.each(&:call)
       @last_polygons = polygons.dup
       notify_observers(:polygons) # TODO do away with this using nested data-binding
     end
