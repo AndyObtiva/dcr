@@ -18,7 +18,7 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
+
 require_relative 'command'
 require_relative 'polygon'
 
@@ -106,16 +106,25 @@ class Dcr
     
     def reset_polygons!
       # reset quietly via instance variable without alerting observers with attribute writer method
-      @polygons = [Polygon.new(location_x, location_y)]
+      @polygons = [default_polygon]
     end
     
     def new_polygon!
-      @polygons << Polygon.new(location_x, location_y)
+      @polygons << default_polygon
+    end
+        
+    def default_polygon
+      Polygon.new(location_x, location_y)
     end
     
     def reset_next_color_index!
       @last_color_index = Command::Color.next_color_index
       Command::Color.reset_next_color_index!
+    end
+      
+    def set_location(new_x, new_y)
+      @location_x = new_x
+      @location_y = new_y
     end
     
     private
@@ -140,21 +149,22 @@ class Dcr
         self.angle = @last_angle if @last_angle
         Command::Color.reset_next_color_index!(@last_color_index)
         callable_expanded_commands = expanded_commands[commands_without_arrow(last_expanded_commands).count..-1]
-        @polygons = @last_polygons
+        self.polygons = @last_polygons
         delete_arrow!
       end
-      callable_expanded_commands.each(&:call)
+      notify_observers(:polygons)
+      callable_expanded_commands.each {|command|
+        command.call
+        notify_observers(:polygons) if command.is_a?(Command::Color)
+      }
       @last_polygons = polygons.dup
       notify_observers(:polygons) # TODO do away with this using nested data-binding
     end
     
     # Calls repeat commands to expand other types of commands (repeat them)
     def expand_commands!
-      # TODO optimize
       self.expanded_commands = commands.dup
-      commands.each do |command|
-        command.call if command.is_a?(Command::Repeat)
-      end
+      commands.select {|command| command.is_a?(Command::Repeat)}.each(&:call)
       self.expanded_commands.compact!
     end
     

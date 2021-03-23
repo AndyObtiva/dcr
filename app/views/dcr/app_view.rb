@@ -51,7 +51,7 @@ class Dcr
       observe(self, 'program.polygons') do |new_polygons|
         if new_polygons != @last_polygons
           last_polygons = @last_polygons
-          @last_polygons = new_polygons
+          @last_polygons = new_polygons.map(&:clone)
           program_location_x = program.location_x
           program_location_y = program.location_y
           shape_polygons_disposed = false

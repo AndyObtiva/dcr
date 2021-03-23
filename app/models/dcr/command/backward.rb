@@ -33,8 +33,7 @@ class Dcr
         new_x = @program.location_x - p2.x
         new_y = @program.location_y - p2.y
         @program.polygons.last.point_array += [new_x, new_y]
-        @program.location_x = new_x
-        @program.location_y = new_y
+        @program.set_location(new_x, new_y)
       end
       
       def value
