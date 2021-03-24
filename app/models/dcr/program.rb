@@ -19,6 +19,8 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'concurrent'
+
 require_relative 'command'
 require_relative 'polygon'
 
@@ -27,6 +29,7 @@ class Dcr
   # It has a current location (x/y) and angle. Angle is clockwise, with 0 being upward (north).
   class Program
     include Glimmer::DataBinding::ObservableModel
+    include Glimmer
     
     STICK_FIGURE_SIZE = 30
     
@@ -46,13 +49,13 @@ class Dcr
       
     DCR
     
-    attr_accessor :text, :commands, :canvas_width, :canvas_height, :location_x, :location_y, :angle, :expanded_commands
+    attr_accessor :text, :commands, :canvas_width, :canvas_height, :location_x, :location_y, :stick_figure_location_x, :stick_figure_location_y, :angle, :expanded_commands
     
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
     
     def initialize(text: '', canvas_width: 800, canvas_height: 600)
-      @commands = []
+      @commands = Concurrent::Array.new([])
       @canvas_width = canvas_width
       @canvas_height = canvas_height
       reset!
@@ -62,18 +65,30 @@ class Dcr
     def canvas_width=(new_width)
       @canvas_width = new_width
       @last_expanded_commands = nil
-      calculate_polygons
+      Thread.new {
+        sleep(0.2) until @thread.nil?
+        calculate_polygons
+      }
     end
     
     def canvas_height=(new_height)
+      pd new_height
       @canvas_height = new_height
       @last_expanded_commands = nil
-      calculate_polygons
+      Thread.new {
+        sleep(0.2) until @thread.nil?
+        calculate_polygons
+      }
     end
     
     def text=(value)
       @text = value
-      parse_commands
+      @thread&.kill
+      @thread = Thread.new {
+        @thread_text = value
+        parse_commands
+        @thread = nil
+      }
     end
     
     def commands=(new_commands)
@@ -81,6 +96,16 @@ class Dcr
       @commands = new_commands
       # TODO observe commands for fine grained changes and have this update "text" as a result (which indirectly fires a "commands" change)
       calculate_polygons
+    end
+      
+    def location_x=(new_x)
+      @location_x = new_x
+      self.stick_figure_location_x = @location_x - 6
+    end
+    
+    def location_y=(new_x)
+      @location_y = new_x
+      self.stick_figure_location_y = @location_y - 6
     end
     
     def reset!
@@ -94,8 +119,10 @@ class Dcr
       # also set stick_figure_location_x and stick_figure_location_y, which is slightly different
       @last_location_x = location_x
       @last_location_y = location_y
-      self.location_x = (canvas_width - STICK_FIGURE_SIZE) / 2.0
-      self.location_y = (canvas_height - STICK_FIGURE_SIZE) / 2.0
+      @location_x = (canvas_width - STICK_FIGURE_SIZE) / 2.0
+      @location_y = (canvas_height - STICK_FIGURE_SIZE) / 2.0
+      @stick_figure_location_x = @location_x - 6
+      @stick_figure_location_y = @location_y - 6
     end
     
     # Resets angle (0 means upward / north). Angle value is clockwise.
@@ -106,7 +133,7 @@ class Dcr
     
     def reset_polygons!
       # reset quietly via instance variable without alerting observers with attribute writer method
-      @polygons = [default_polygon]
+      @polygons = Concurrent::Array.new([default_polygon])
     end
     
     def new_polygon!
@@ -130,7 +157,7 @@ class Dcr
     private
     
     def parse_commands
-      self.commands = ("#{text.strip}\n#{PROGRAM_TEXT_DIRECTION_ARROW}").split("\n").map do |command_text|
+      self.commands = ("#{@thread_text.strip}\n#{PROGRAM_TEXT_DIRECTION_ARROW}").split("\n").map do |command_text|
         Command.create(program: self, text: command_text)
       end
     end
@@ -144,8 +171,8 @@ class Dcr
       expanded_commands_without_arrow = commands_without_arrow(expanded_commands)
       expanded_commands_without_arrow_subset_matching_last_commands = expanded_commands_without_arrow && commands_without_arrow(last_expanded_commands) && expanded_commands_without_arrow[commands_without_arrow(last_expanded_commands).count..-1]
       if expanded_commands_without_arrow_subset_matching_last_commands && expanded_commands_without_arrow_subset_matching_last_commands.map(&:text) == commands_without_arrow(last_expanded_commands)&.map(&:text)
-        self.location_x = @last_location_x if @last_location_x
-        self.location_y = @last_location_y if @last_location_y
+        @location_x = @last_location_x if @last_location_x
+        @location_y = @last_location_y if @last_location_y
         self.angle = @last_angle if @last_angle
         Command::Color.reset_next_color_index!(@last_color_index)
         callable_expanded_commands = expanded_commands[commands_without_arrow(last_expanded_commands).count..-1]
@@ -157,7 +184,7 @@ class Dcr
         command.call
         notify_observers(:polygons) if command.is_a?(Command::Color)
       }
-      @last_polygons = polygons.dup
+      @last_polygons = Concurrent::Array.new(polygons.dup)
       notify_observers(:polygons) # TODO do away with this using nested data-binding
     end
     

@@ -33,5 +33,12 @@ class Dcr
       point_array = point_array.first if point_array.size == 1 && point_array.first.is_a?(Array)
       @point_array = point_array
     end
+    
+    # TODO define clone to avoid having point_array be the same in a cloned polygon
+    def clone
+      super.tap do |cloned_polygon|
+        cloned_polygon.point_array = point_array.clone
+      end
+    end
   end
 end

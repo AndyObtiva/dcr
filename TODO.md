@@ -4,9 +4,7 @@
 
 ### 1.0.0
 
-- Look into why applying color at the end of a polygon makes the arrow disappear
-- Consider doing model recalculations in a separate thread
-- Have single letter acronyms for colors
+- Cancel in-progress rendering once a new program has been entered
 - Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)
 - Load program (start at samples path)
 - Extract samples from jar in packaged app run
@@ -31,6 +29,7 @@
 - Avoid re-duplicating polygons that already exist (thus optimizing performance)
 - Support easy listing/loading of included samples
 - Consider delaying execution by a 200 milliseconds while typing
+- Move the drawing instead of redrawing from scratch on resize of the window/canvas
 
 ## Issues
 

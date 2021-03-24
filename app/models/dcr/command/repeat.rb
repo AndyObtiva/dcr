@@ -26,6 +26,7 @@ class Dcr
       
       def call
         command_index_of_self = @program.expanded_commands.index(self)
+        return if command_index_of_self.nil?
         commands_up_to_self = @program.expanded_commands[0...command_index_of_self]
         last_empty_command = commands_up_to_self.reverse.detect {|command| command.is_a?(Empty)}
         command_index_of_last_empty_command = @program.expanded_commands.index(last_empty_command).to_i # first index is 0 if no empty command is found
