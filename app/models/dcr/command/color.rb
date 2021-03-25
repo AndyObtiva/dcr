@@ -27,7 +27,6 @@ class Dcr
         'black' => :black,
         'blue' => :cyan,
         'gray' => :gray,
-        'grey' => :gray,
         'green' => :green,
         'orange' => [255, 127, 0],
         'pink' => :magenta,
@@ -35,6 +34,9 @@ class Dcr
         'red' => :red,
         'white' => :white,
         'yellow' => :yellow,
+      }
+      COLOR_MAP_ALIASES = {
+        'grey' => :gray,
         'k' => :black,
         'b' => :cyan,
         'a' => :gray,
@@ -46,6 +48,7 @@ class Dcr
         'w' => :white,
         'y' => :yellow,
       }
+      
       command_alias 'c'
       command_exclusion 'r'
       
@@ -60,7 +63,7 @@ class Dcr
               color_derivative_hash.merge(color_derivative => color_value)
             end
             hash.merge(color_hash)
-          end
+          end.merge(COLOR_MAP_ALIASES)
         end
         
         def color_derivatives(color_string)
@@ -68,28 +71,44 @@ class Dcr
           color_string_length.times.map {|n| color_string.chars.combination(color_string_length - n).to_a}.reduce(:+).map(&:join)
         end
       
-        def next_color
+        def next_color_string
           reset_next_color_index! if @next_color_index.nil?
           @next_color_index += 1
-          unique_colors[@next_color_index % unique_colors.count]
+          COLOR_MAP.keys[@next_color_index % COLOR_MAP.count]
+        end
+        
+        def next_color
+          COLOR_MAP[next_color_string]
         end
         
         def reset_next_color_index!(next_color_index_value=nil)
           @next_color_index = next_color_index_value || -2 # start at yellow (since it skips one with the first addition)
         end
         
-        def unique_colors
-          @unique_colors ||= COLOR_MAP.values.uniq
+        def normalize_color_string(color_string)
+          color_value = Color.expanded_color_map[color_string]
+          COLOR_MAP.invert[color_value]
         end
       end
       
       def call
-        @program.polygons.last&.background = value
+        @program.polygons.last&.background = interpreted_value
         @program.new_polygon!
       end
       
       def value
-        !Color.expanded_color_map.keys.include?(super.to_s) ? Color.next_color : Color.expanded_color_map[super.to_s]
+        value_string = super.to_s
+        @value ||= Color.expanded_color_map.keys.include?(value_string) ? Color.normalize_color_string(value_string) : next_color_string
+      end
+      
+      # interpreted value is used by GUI
+      def interpreted_value
+        the_value = value
+        COLOR_MAP[the_value]
+      end
+      
+      def next_color_string
+        @next_color_string ||= Color.next_color_string
       end
     end
   end
