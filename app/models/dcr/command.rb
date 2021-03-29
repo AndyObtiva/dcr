@@ -115,6 +115,11 @@ class Dcr
     def value
       parsed_value.to_s.match(/\d+/) ? parsed_value.to_i : parsed_value
     end
+          
+    # normalized operation/value for comparison of equality (different from command comparison of equality, which treats two different commands with the same comparables inequal since they can repeat)
+    def comparable
+      [operation, value]
+    end
     
     def parsed_value
       Command.parse_value(@text)

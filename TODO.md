@@ -4,7 +4,7 @@
 
 ### 1.0.0
 
-- Cancel in-progress rendering once a new program has been entered
+- Cancel in-progress rendering once a new program has been entered (app_view.rb:89 # TODO AND @last_polygons don't include this new_polygon being rendered at the exact same index as well as including all polygons preceding)
 - Save program (Save... & Save menu items with CMD+S keyboard shortcut/accelerator)
 - Load program (start at samples path)
 - Extract samples from jar in packaged app run

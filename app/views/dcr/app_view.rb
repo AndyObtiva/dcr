@@ -20,6 +20,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
 require 'models/dcr/program'
+require 'models/dcr/polygon'
 
 class Dcr
   class AppView
@@ -50,91 +51,80 @@ class Dcr
     after_body {
       observe(self, 'program.polygons') do |new_polygons|
         notification_counter = @notification_counter = @notification_counter.to_i + 1
-        new_polygons = new_polygons.map(&:clone)
-        puts '*'*80
-        puts notification_counter
-        puts '<<new_polygons>>'
-        puts new_polygons.inspect
+        @new_polygons = new_polygons
+        puts 'new_polygons', new_polygons.inspect
         program_location_x = program.location_x
         program_location_y = program.location_y
-        async_exec {
-          if new_polygons != @last_polygons
-            puts 'Polygons are different from last polygons! Rendering Polygons!'
-            last_polygons = @last_polygons
-            @last_polygons = new_polygons.map(&:clone)
+        if new_polygons != @last_polygons
+          async_exec {
             shape_polygons_disposed = false
             new_polygon_encountered = false
             new_polygons.each_with_index { |new_polygon, polygon_index|
-              puts '>>>>'*8
-              puts 'polygon index'
-              puts polygon_index
-              if new_polygon_encountered || new_polygon != last_polygons.to_a[polygon_index]
+              if new_polygon_encountered || new_polygon != @last_polygons.to_a[polygon_index]
                 new_polygon_encountered = true
                 if !shape_polygons_disposed
                   shape_polygons_disposed = true
                   async_exec {
-#                     unless new_polygons != @last_polygons
-                      polygon_shape_index = new_polygons[0...polygon_index].map {|shape_polygon| shape_polygon.background.nil? ? 1 : 2 }.sum
-                      shapes_to_dispose = @polygon_container.shapes.to_a.dup[polygon_shape_index..-1].dup
-                      puts '>>>>>shapes_to_dispose'
-                      puts shapes_to_dispose.inspect
-                      shapes_to_dispose.to_a.each_with_index { |shape, shape_index|
-                        shape.dispose(redraw: shape_index == (shapes_to_dispose.count - 1))
-                      }
-#                     end
+                    polygon_shape_index = new_polygons[0...polygon_index].map {|shape_polygon| shape_polygon.background.nil? ? 1 : 2 }.sum
+                    shapes_to_dispose = @polygon_container.shapes.to_a.dup[polygon_shape_index..-1].dup
+                    shapes_to_dispose.to_a.each_with_index { |shape, shape_index|
+                      shape.dispose(redraw: shape_index == (shapes_to_dispose.count - 1))
+                    }
                   }
                 end
                 unless new_polygons.count == 1 || polygon_index == (new_polygons.count - 1)
                   (new_polygon.point_array.count / 2).times {|point_index|
                     async_exec {
-                      program.stick_figure_location_x = new_polygon.point_array[point_index*2] - 6 #unless new_polygons != @last_polygons
+                      unless cancelled_polygons?(new_polygons)
+                        program.stick_figure_location_x = new_polygon.point_array[point_index*2] - 6
+                      end
                     }
                     async_exec {
-                      program.stick_figure_location_y = new_polygon.point_array[point_index*2 + 1] - 6 #unless new_polygons != @last_polygons
+                      unless cancelled_polygons?(new_polygons)
+                        program.stick_figure_location_y = new_polygon.point_array[point_index*2 + 1] - 6
+                      end
                     }
                   }
                 end
                 if new_polygon.background.nil?
                   async_exec {
-                    #unless new_polygons != @last_polygons
-                      puts 'rendering polyline'
+                    unless cancelled_polygons?(new_polygons)
                       @polygon_container.content {
                         polyline(new_polygon.point_array) {
                           foreground :black
                         }
                       }
-                    #end
+                    end
                   }
                 else
                   async_exec {
-                    #unless new_polygons != @last_polygons
+                    unless cancelled_polygons?(new_polygons)
                       @polygon_container.content {
-                        puts 'rendering polygon filled'
                         polygon(new_polygon.point_array) {
                           background new_polygon.background
                         }
-                        puts 'rendering polygon drawn'
                         polygon(new_polygon.point_array) {
                           foreground :black
                         }
                       }
-                    #end
+                    end
                   }
                 end
               end
             }
             async_exec {
-              program.stick_figure_location_x = program_location_x - 6 #unless new_polygons != @last_polygons
-              puts 'program.location_x'
-              puts program.location_x
+              unless cancelled_polygons?(new_polygons)
+                program.stick_figure_location_x = program_location_x - 6
+              end
             }
             async_exec {
-              program.stick_figure_location_y = program_location_y - 6 #unless new_polygons != @last_polygons
-              puts 'program.location_y'
-              puts program.location_y
+              unless cancelled_polygons?(new_polygons)
+                program.stick_figure_location_y = program_location_y - 6
+              end
             }
-          end
-        }
+            @last_polygons = new_polygons.map(&:clone)
+          }
+        end
       end
       
       # TODO implement command GUI in version 1.1+
@@ -292,7 +282,13 @@ class Dcr
         message "The DCR Programming Language (Draw Color Repeat) #{VERSION}\n\n#{LICENSE}"
       }.open
     end
-  
+    
+    def cancelled_polygons?(new_polygons)
+      # check if the new polygons reported in instance variable (coming from another thread) match the ones passed through the arg
+      @new_polygons != new_polygons && !Dcr::Polygon.polygons_include_all_polygons?(@new_polygons, new_polygons)
+      false
+    end
+    
   end
   
 end

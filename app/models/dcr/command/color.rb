@@ -98,7 +98,12 @@ class Dcr
       
       def value
         value_string = super.to_s
-        @value ||= Color.expanded_color_map.keys.include?(value_string) ? Color.normalize_color_string(value_string) : next_color_string
+        if @value_string != value_string || @value_string.empty?
+          @value_string = value_string
+          # TODO beware of the edge case where if the last value string is empty, the comparable, which includes value, ends up returning a match with yellow (first color in series) thus not updating GUI
+          @value = Color.expanded_color_map.keys.include?(value_string) ? Color.normalize_color_string(value_string) : next_color_string
+        end
+        @value
       end
       
       # interpreted value is used by GUI
@@ -108,7 +113,7 @@ class Dcr
       end
       
       def next_color_string
-        @next_color_string ||= Color.next_color_string
+        Color.next_color_string
       end
     end
   end

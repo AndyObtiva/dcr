@@ -29,6 +29,12 @@ class Dcr
     
     attr_accessor *ATTRIBUTES
     
+    class << self
+      def polygons_include_all_polygons?(polygons, other_polygons)
+        polygons[0...other_polygons.count] == other_polygons
+      end
+    end
+    
     def initialize(*point_array)
       point_array = point_array.first if point_array.size == 1 && point_array.first.is_a?(Array)
       @point_array = point_array
@@ -40,5 +46,6 @@ class Dcr
         cloned_polygon.point_array = point_array.clone
       end
     end
+        
   end
 end
