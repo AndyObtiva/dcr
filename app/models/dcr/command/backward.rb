@@ -17,7 +17,7 @@ class Dcr
       end
       
       def value
-        super.to_f == 0 ? 1 : super.to_f
+        super.to_f == 0 ? 1.0 : super.to_f
       end
     end
   end
