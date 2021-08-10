@@ -26,20 +26,35 @@ class Dcr
   # A DCR program that takes text (representing commands) and board width/height for drawing polygons
   # It has a current location (x/y) and angle. Angle is clockwise, with 0 being upward (north).
   class Program
+    include Glimmer::DataBinding::ObservableModel
+    
     STICK_FIGURE_SIZE = 30
     
-    attr_accessor :text, :commands, :board_width, :board_height, :location_x, :location_y, :angle, :expanded_commands
+    attr_accessor :text, :commands, :canvas_width, :canvas_height, :location_x, :location_y, :stick_figure_location_x, :stick_figure_location_y, :angle, :expanded_commands
     
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
     
-    def initialize(text: '', board_width: 960, board_height: 284)
+    def initialize(text: '', canvas_width: 800, canvas_height: 600)
       @commands = []
-      @board_width = board_width
-      @board_height = board_height
-      @text = text
+      @canvas_width = canvas_width
+      @canvas_height = canvas_height
       reset!
+      self.text = text
     end
+    
+    def canvas_width=(new_width)
+      @canvas_width = new_width
+      @last_expanded_commands = nil
+      calculate_polygons
+    end
+    
+    def canvas_height=(new_height)
+      @canvas_height = new_height
+      @last_expanded_commands = nil
+      calculate_polygons
+    end
+    
     
     def text=(value)
       @text = value
@@ -53,16 +68,27 @@ class Dcr
       calculate_polygons
     end
     
+    def location_x=(new_x)
+      @location_x = new_x
+      self.stick_figure_location_x = @location_x - 6
+    end
+    
+    def location_y=(new_x)
+      @location_y = new_x
+      self.stick_figure_location_y = @location_y - 6
+    end
+    
     def reset!
       reset_location!
       reset_angle!
+      reset_next_color_index!
       reset_polygons!
     end
     
     def reset_location!
       # also set stick_figure_location_x and stick_figure_location_y, which is slightly different
-      self.location_x = (board_width - STICK_FIGURE_SIZE) / 2.0
-      self.location_y = (board_height - STICK_FIGURE_SIZE) / 2.0
+      self.location_x = (canvas_width - STICK_FIGURE_SIZE) / 2.0
+      self.location_y = (canvas_height - STICK_FIGURE_SIZE) / 2.0
     end
     
     # Resets angle (0 means upward / north). Angle value is clockwise.
@@ -77,6 +103,10 @@ class Dcr
     
     def new_polygon!
       @polygons << Polygon.new(location_x, location_y)
+    end
+    
+    def reset_next_color_index!
+      Command::Color.reset_next_color_index!
     end
     
     private
