@@ -20,7 +20,7 @@ Any invalid commands or values are simply ignored, so the programming language n
 
 If a partial command is entered (e.g. `lef` for `left` or `rig` for `right`), it is interpreted as the full command.
 
-If a partial color value is entered (e.g. `gree` for `green` or `r` for `red`), it is interpreted as the full color value.
+If a partial color value is entered (e.g. `gree` for `green` or `rd` for `red`), it is interpreted as the full color value.
 
 If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g. `90` degrees).
 
@@ -37,16 +37,16 @@ If an invalid value is entered (e.g. `right asdf`), the default is assumed (e.g.
 ### Coloring
 
 - `color` (or `c`): Color the shape already drawn by closing it and filling it with a random or specified color from the following list (e.g. `color`, `color red`, or `c red`):
-  - `black`
-  - `blue`
-  - `grey`
-  - `green`
-  - `orange`
-  - `pink`
-  - `purple`
-  - `red`
-  - `white`
-  - `yellow`
+  - `black` (or `k`)
+  - `blue` (or `b`)
+  - `gray` (or `a`)
+  - `green` (or `g`)
+  - `orange` (or `o`)
+  - `pink` (or `i`)
+  - `purple` (or `p`)
+  - `red` (or `r`)
+  - `white` (or `w`)
+  - `yellow` (or `y`)
   
 ### Repetition
 
