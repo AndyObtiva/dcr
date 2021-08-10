@@ -1,5 +1,7 @@
 require 'models/dcr/program'
 
+require 'views/dcr/compass'
+
 class Dcr
   class AppView
     include Glimmer::UI::CustomShell
@@ -91,6 +93,12 @@ class Dcr
                 location_x <= [self, 'program.stick_figure_location_x']
                 location_y <= [self, 'program.stick_figure_location_y']
               }
+              
+              @compass = compass {
+                location_x <= [self, 'program.location_x']
+                location_y <= [self, 'program.location_y']
+                angle <= [self, 'program.angle']
+              }
             }
           }
         }
@@ -115,7 +123,6 @@ class Dcr
         message "The DCR Programming Language (Draw Color Repeat) #{VERSION}\n\n#{LICENSE}"
       }.open
     end
-  
   end
   
 end
