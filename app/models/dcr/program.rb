@@ -72,7 +72,6 @@ class Dcr
     end
     
     def canvas_height=(new_height)
-      pd new_height
       @canvas_height = new_height
       @last_expanded_commands = nil
       Thread.new {
@@ -93,9 +92,10 @@ class Dcr
     
     def commands=(new_commands)
       # TODO remove observers from old commands
+      old_commands = @commands
       @commands = new_commands
       # TODO observe commands for fine grained changes and have this update "text" as a result (which indirectly fires a "commands" change)
-      calculate_polygons
+      calculate_polygons unless old_commands&.map(&:comparable) == new_commands&.map(&:comparable)
     end
       
     def location_x=(new_x)
@@ -157,13 +157,16 @@ class Dcr
     private
     
     def parse_commands
-      self.commands = ("#{@thread_text.strip}\n#{PROGRAM_TEXT_DIRECTION_ARROW}").split("\n").map do |command_text|
+#       self.commands = ("#{@thread_text.strip}\n#{PROGRAM_TEXT_DIRECTION_ARROW}").split("\n").map do |command_text|
+      self.commands = ("#{@thread_text.strip}").split("\n").map do |command_text|
         Command.create(program: self, text: command_text)
       end
     end
     
     def calculate_polygons
       reset!
+      puts 'commands.inspect'
+      puts commands.inspect
       expand_commands!
       last_expanded_commands = @last_expanded_commands
       @last_expanded_commands = expanded_commands.dup
@@ -176,15 +179,19 @@ class Dcr
         self.angle = @last_angle if @last_angle
         Command::Color.reset_next_color_index!(@last_color_index)
         callable_expanded_commands = expanded_commands[commands_without_arrow(last_expanded_commands).count..-1]
-        self.polygons = @last_polygons
+        self.polygons = @last_polygons.map(&:clone)
+        puts 'delete arrow'
         delete_arrow!
       end
+      puts 'polygons', polygons.inspect
       notify_observers(:polygons)
+      puts 'callable_expanded_commands.inspect', callable_expanded_commands.inspect
       callable_expanded_commands.each {|command|
         command.call
         notify_observers(:polygons) if command.is_a?(Command::Color)
       }
       @last_polygons = Concurrent::Array.new(polygons.dup)
+      puts '@last_polygons', @last_polygons.inspect
       notify_observers(:polygons) # TODO do away with this using nested data-binding
     end
     
