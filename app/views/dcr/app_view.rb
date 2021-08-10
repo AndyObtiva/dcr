@@ -93,7 +93,7 @@ class Dcr
           sash_form {
             @program_text = code_text(lines: true) { |code_text_proxy|
               font height: 30, name: code_text_proxy.font.font_data[0].name
-              text bind(self, 'program.text')
+              text <=> [self, 'program.text']
             }
             @program_composite = composite
           }
@@ -108,8 +108,8 @@ class Dcr
               @stick_figure = stick_figure(
                 size: Program::STICK_FIGURE_SIZE,
               ) {
-                location_x bind(self, 'program.location_x')
-                location_y bind(self, 'program.location_y')
+                location_x <= [self, 'program.location_x', on_read: ->(x) { x - 6 }]
+                location_y <= [self, 'program.location_y', on_read: ->(y) { y - 6 }]
               }
             }
           }
