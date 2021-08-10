@@ -55,10 +55,10 @@ end
 
 require 'glimmer/rake_task'
 Glimmer::RakeTask::Package.javapackager_extra_args =
-  " -name 'Dcr'" +
-  " -title 'Dcr'" +
-  " -Bmac.CFBundleName='Dcr'" +
-  " -Bmac.CFBundleIdentifier='org.dcr.application.Dcr'"
+  " -name 'Draw Color Repeat'" +
+  " -title 'Draw Color Repeat'" +
+  " -Bmac.CFBundleName='Draw Color Repeat'" +
+  " -Bmac.CFBundleIdentifier='org.dcr.application.DrawColorRepeat'"
   # " -BlicenseType=" +
   # " -Bmac.category=" +
   # " -Bmac.signing-key-developer-id-app="
