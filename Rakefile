@@ -17,8 +17,8 @@ Juwelier::Tasks.new do |gem|
   gem.name = "dcr"
   gem.homepage = "http://github.com/AndyObtiva/dcr"
   gem.license = "MIT"
-  gem.summary = %Q{Dcr}
-  gem.description = %Q{Dcr}
+  gem.summary = %Q{Draw Color Repeat}
+  gem.description = %Q{Draw Color Repeat is a young child programming language for drawing and coloring with repetition. DCR is a minimal subset of Logo.}
   gem.email = "andy.am@gmail.com"
   gem.authors = ["Andy Maleh"]
 

@@ -21,8 +21,16 @@
 
 $LOAD_PATH.unshift(File.expand_path('..', __FILE__))
 
-require 'bundler/setup'
-Bundler.require(:default)
+begin
+  require 'bundler/setup'
+  Bundler.require(:default)
+rescue
+  # gem mode requires manually
+  require 'glimmer-dsl-swt'
+  require 'glimmer-cp-stickfigure'
+  require 'strategic'
+  require 'equalizer'
+end
 
 require 'puts_debuggerer'
 require 'views/dcr/app_view'

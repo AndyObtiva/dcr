@@ -1,10 +1,14 @@
-# DCR (Draw Color Repeat) 1.0.0
+# <img alt="DCR" src="https://raw.githubusercontent.com/AndyObtiva/dcr/master/package/linux/Draw%20Color%20Repeat.png" height=85 /> DCR (Draw Color Repeat) 1.0.0
+[![Gem Version](https://badge.fury.io/rb/dcr.svg)](http://badge.fury.io/rb/dcr)
+​
 
 A young child programming language for drawing and coloring with repetition.
 
 DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young children in school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
 
 ![Draw Color Repeat Screenshot](/images/dcr-screenshot.png)
+
+[<img alt="DCR" src="https://raw.githubusercontent.com/AndyObtiva/dcr/master/package/linux/Draw%20Color%20Repeat.png" height=40 /> Download version 1.0.0 for the Mac (x64 Big Sur and older)](https://www.dropbox.com/s/uuu05kzg0grhune/Draw%20Color%20Repeat-1.0.0.dmg?dl=1)
 
 ## Programming Language Syntax
 
@@ -522,6 +526,10 @@ color gray
 Screenshot:
 
 ![house](/images/dcr-samples-house.png)
+
+## Ruby gem
+
+The [dcr](https://rubygems.org/gems/dcr) ruby gem requires the [JDK](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html) and [JRuby](https://www.jruby.org) versions mentioned in the pre-requisites of [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt#pre-requisites) to run.
 
 ## Contributing to dcr
 
