@@ -14,7 +14,7 @@ require 'rake'
 require 'juwelier'
 Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "dcr"
+  gem.name = "draw_color_repeat"
   gem.homepage = "http://github.com/AndyObtiva/dcr"
   gem.license = "MIT"
   gem.summary = %Q{Draw Color Repeat}
@@ -22,8 +22,8 @@ Juwelier::Tasks.new do |gem|
   gem.email = "andy.am@gmail.com"
   gem.authors = ["Andy Maleh"]
 
-  gem.files = Dir['VERSION', 'LICENSE.txt', 'app/**/*', 'bin/**/*', 'config/**/*', 'db/**/*', 'docs/**/*', 'fonts/**/*', 'icons/**/*', 'images/**/*', 'lib/**/*', 'package/**/*', 'script/**/*', 'sounds/**/*', 'vendor/**/*', 'videos/**/*']
-  gem.executables = ['dcr', 'dcr']
+  gem.files = Dir['dcr.gemspec', 'README.md', 'VERSION', 'LICENSE.txt', 'app/**/*', 'bin/**/*', 'config/**/*', 'samples/**/*', 'db/**/*', 'docs/**/*', 'fonts/**/*', 'icons/**/*', 'lib/**/*', 'package/**/*', 'script/**/*', 'sounds/**/*', 'vendor/**/*', 'videos/**/*']
+  gem.executables = ['dcr']
   gem.require_paths = ['vendor', 'lib', 'app']
   # dependencies defined in Gemfile
 end
