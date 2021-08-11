@@ -96,7 +96,7 @@ class Dcr
               
               @compass = compass {
                 location_x <= [self, 'program.location_x']
-                location_y <= [self, 'program.location_y', on_read: ->(y) {y + 1}]
+                location_y <= [self, 'program.location_y']
                 angle <= [self, 'program.angle']
               }
             }

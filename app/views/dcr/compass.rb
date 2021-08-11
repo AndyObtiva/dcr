@@ -24,11 +24,11 @@ class Dcr
       
       body {
         shape(0, 0) {
-          # using polygons because transforms are not working properly at 45 degrees when used with unfilled shapes like lines
-          polygon(0, 0, 18, 0, 18, 1, 1, 1) {
+          # using polygons because transforms are not working properly at 45/135 degrees when used with unfilled shapes like lines
+          polygon(0, -1, 18, -1, 18, 1, 0, 1) {
             background :black
           }
-          polygon(14, -4, 14, 5, 18, 1, 18, 0) {
+          polygon(14, -5, 14, 5, 19, 0) {
             background :black
           }
           
