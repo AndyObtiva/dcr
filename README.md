@@ -529,7 +529,7 @@ Screenshot:
 
 ## Ruby gem
 
-The [draw_color_repeat](https://rubygems.org/gems/draw_color_repeat) ruby gem requires the [JDK](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html) and [JRuby](https://www.jruby.org) versions mentioned in the pre-requisites of [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt#pre-requisites) to run via `dcr` command.
+The [draw_color_repeat](https://rubygems.org/gems/draw_color_repeat) ruby gem requires the [JDK](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html) and [JRuby](https://www.jruby.org) versions mentioned in the pre-requisites of [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt#pre-requisites) to run via the `dcr` command.
 
 ## Contributing to dcr
 
