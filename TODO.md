@@ -1,8 +1,5 @@
 # TODO
 
-- Make drawing happen through the left hand of the stick figure (end of left arm)
-- Process commands as case-insensitive
-- Support concatenation of number to text (as tolerating error) (e.g. f3, backward9, right80)
 - GUI appends command entries with a drop down for operation and a spinner/drop down for value (which could be moved up and down with drag&drop or arrows and could be deleted)
 - generate GUI components in alignment with programming commands
 - ability to move GUI commands
@@ -29,4 +26,4 @@
 
 ## Issues
 
-- Look into issue of typing an invalid command in a series of many commands undoing previous drawings from previous commands
+None

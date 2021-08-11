@@ -1,6 +1,4 @@
-# DCR (Draw Color Repeat)
-
-[(note: this is an alpha project that is not released yet)](/TODO.md)
+# DCR (Draw Color Repeat) 1.0.0
 
 A young child programming language for drawing and coloring with repetition.
 
@@ -11,6 +9,8 @@ DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_
 ## Programming Language Syntax
 
 DCR always starts with a stick figure at the center of the drawing area, facing up.
+
+![Draw Color Repeat Start](/images/dcr-start.png)
 
 Programming language commands may be entered as text with the keyboard or through the graphical user interface using the mouse.
 
@@ -215,22 +215,24 @@ Screenshot:
 
 ![five pointed star](/images/dcr-samples-five-pointed-star.png)
 
-### Eight Pointed Star
+### Sherrif Badge Star
 
 DCR Code:
 
 ```ruby
+right 37
+
 forward 28
-right 45
+right 51
 forward 28
-left
-repeat 7
+left 102
+repeat 6
 color yellow
 ```
 
 Screenshot:
 
-![eight pointed star](/images/dcr-samples-eight-pointed-star.png)
+![sherrif badge star](/images/dcr-samples-sherrif-badge-star.png)
 
 ### Stairs
 
@@ -284,6 +286,39 @@ Screenshot:
 
 ![aztec pyramid](/images/dcr-samples-aztec-pyramid.png)
 
+### Stick Figure
+
+DCR Code:
+
+```ruby
+right 65
+forward 70
+backward 70
+left 130
+forward 70
+backward 70
+right 65
+forward 30
+right
+
+left 4
+forward 1
+repeat 90
+
+right 94
+forward 80
+right 55
+forward 90
+backward 90
+left 110
+forward 90
+```
+
+Screenshot:
+
+![stick figure](/images/dcr-samples-stick-figure.png)
+
+
 ### Octagon of Squares
 
 DCR Code:
@@ -336,6 +371,61 @@ repeat 19
 Screenshot:
 
 ![circle of circles](/images/dcr-samples-circle-of-circles.png)
+
+### Spider Web
+
+DCR Code:
+
+```ruby
+right 10
+forward 180
+repeat 35
+right 110
+forward 260
+repeat 35
+```
+
+Screenshot:
+
+![house](/images/dcr-samples-spider-web.png)
+
+### Swirl
+
+DCR Code:
+
+```ruby
+forward 200
+right 45
+repeat 6
+color
+forward 200
+right 38
+repeat 51
+```
+
+Screenshot:
+
+![swirl](/images/dcr-samples-swirl.png)
+
+### Sun
+
+DCR Code:
+
+```ruby
+back 450
+
+forward 150
+right 5
+repeat
+color yellow
+back 300
+left 5
+repeat 180
+```
+
+Screenshot:
+
+![sun](/images/dcr-samples-sun.png)
 
 ### Playing Cards
 
@@ -426,7 +516,7 @@ forward 40
 right
 forward 70
 right
-color grey
+color gray
 ```
 
 Screenshot:

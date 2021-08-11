@@ -1,0 +1,8 @@
+right 37
+
+forward 28
+right 51
+forward 28
+left 102
+repeat 6
+color yellow

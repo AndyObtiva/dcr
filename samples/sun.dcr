@@ -1,0 +1,9 @@
+back 450
+
+forward 150
+right 5
+repeat
+color yellow
+back 300
+left 5
+repeat 180
