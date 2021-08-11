@@ -2,9 +2,9 @@
 
 [(note: this is an alpha project that is not released yet)](/TODO.md)
 
-A young boy programming language for drawing and coloring with repetition.
+A young child programming language for drawing and coloring with repetition.
 
-DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young boys in school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
+DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young children in school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
 
 ![Draw Color Repeat Screenshot](/images/dcr-screenshot.png)
 
@@ -14,7 +14,7 @@ DCR always starts with a stick figure at the center of the drawing area, facing 
 
 Programming language commands may be entered as text with the keyboard or through the graphical user interface using the mouse.
 
-This programming language is automatically executed while commands are being entered, so no "Run" button is needed. Boys will get to see their commands instantly drawn and alter the drawings spontaneously, thus turning this into a sort of a game too, not just a programming language.
+This programming language is automatically executed while commands are being entered, so no "Run" button is needed. Chilren will get to see their commands instantly drawn and alter the drawings spontaneously, thus turning this into a sort of a game too, not just a programming language.
 
 Any invalid commands or values are simply ignored, so the programming language never errors.
 

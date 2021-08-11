@@ -90,13 +90,13 @@ class Dcr
               @stick_figure = stick_figure(
                 size: Program::STICK_FIGURE_SIZE,
               ) {
-                location_x <= [self, 'program.stick_figure_location_x']
-                location_y <= [self, 'program.stick_figure_location_y']
+                location_x <= [self, 'program.location_x', on_read: ->(x) {x - 6}]
+                location_y <= [self, 'program.location_y', on_read: ->(y) {y - 6}]
               }
               
               @compass = compass {
                 location_x <= [self, 'program.location_x']
-                location_y <= [self, 'program.location_y']
+                location_y <= [self, 'program.location_y', on_read: ->(y) {y + 1}]
                 angle <= [self, 'program.angle']
               }
             }

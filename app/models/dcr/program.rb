@@ -30,7 +30,7 @@ class Dcr
     
     STICK_FIGURE_SIZE = 30
     
-    attr_accessor :text, :commands, :canvas_width, :canvas_height, :location_x, :location_y, :stick_figure_location_x, :stick_figure_location_y, :angle, :expanded_commands
+    attr_accessor :text, :commands, :canvas_width, :canvas_height, :location_x, :location_y, :angle, :expanded_commands
     
     # array of polygon objects including array of point arrays and color to be drawn/filled in GUI
     attr_accessor :polygons
@@ -68,16 +68,6 @@ class Dcr
       calculate_polygons
     end
     
-    def location_x=(new_x)
-      @location_x = new_x
-      self.stick_figure_location_x = @location_x - 6
-    end
-    
-    def location_y=(new_x)
-      @location_y = new_x
-      self.stick_figure_location_y = @location_y - 6
-    end
-    
     def reset!
       reset_location!
       reset_angle!
@@ -107,6 +97,10 @@ class Dcr
     
     def reset_next_color_index!
       Command::Color.reset_next_color_index!
+    end
+    
+    def angle=(value)
+      @angle = value % 360
     end
     
     private

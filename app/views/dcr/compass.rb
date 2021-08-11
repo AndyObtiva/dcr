@@ -24,22 +24,33 @@ class Dcr
       
       body {
         shape(0, 0) {
-          line(0, 0, 18, 0)
-          line(14, -4, 18, 0)
-          line(14, 4, 18, 0)
+          # using polygons because transforms are not working properly at 45 degrees when used with unfilled shapes like lines
+          polygon(0, 0, 18, 0, 18, 1, 1, 1) {
+            background :black
+          }
+          polygon(14, -4, 14, 5, 18, 1, 18, 0) {
+            background :black
+          }
+          
+          current_transform
         }
       }
       
       def apply_transform
-        pd angle, location_x, location_y
         body_root.content {
-          transform {
-            rotate(angle - 90)
-            translate location_x, location_y
-          }
+          current_transform
+        }
+      end
+      
+      def current_transform
+        transform {
+          translate location_x, location_y
+          rotate(angle - 90)
         }
       end
   
     end
+    
   end
+  
 end
