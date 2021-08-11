@@ -18,7 +18,7 @@ DCR always starts with a stick figure at the center of the drawing area, facing 
 
 Programming language commands may be entered as text with the keyboard or through the graphical user interface using the mouse.
 
-This programming language is automatically executed while commands are being entered, so no "Run" button is needed. Chilren will get to see their commands instantly drawn and alter the drawings spontaneously, thus turning this into a sort of a game too, not just a programming language.
+Commands are automatically executed while being entered, so no "Run" button is needed. Children will get to see their commands instantly drawn and alter the drawings spontaneously, thus turning this into a sort of a game too, not just a programming language.
 
 Any invalid commands or values are simply ignored, so the programming language never errors.
 
