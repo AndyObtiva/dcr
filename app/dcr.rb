@@ -46,3 +46,6 @@ class Dcr
     app_view.open
   end
 end
+
+org.eclipse.swt.widgets.Display.app_name = 'Draw Color Repeat'
+org.eclipse.swt.widgets.Display.app_version = Dcr::VERSION
