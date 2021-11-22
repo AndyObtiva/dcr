@@ -4,7 +4,7 @@
 
 A young child programming language for drawing and coloring with repetition.
 
-DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1-3 grade young children in school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
+DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1st-3rd grade young children in elementary school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
 
 ![Draw Color Repeat Screenshot](/images/dcr-screenshot.png)
 
@@ -16,7 +16,7 @@ DCR always starts with a stick figure at the center of the drawing area, facing 
 
 ![Draw Color Repeat Start](/images/dcr-start.png)
 
-Programming language commands may be entered as text with the keyboard or through the graphical user interface using the mouse.
+Programming language commands may be entered as text with the keyboard.
 
 Commands are automatically executed while being entered, so no "Run" button is needed. Children will get to see their commands instantly drawn and alter the drawings spontaneously, thus turning this into a sort of a game too, not just a programming language.
 
@@ -526,6 +526,172 @@ color gray
 Screenshot:
 
 ![house](/images/dcr-samples-house.png)
+
+### Sandra's Samples
+
+Sandra, an elementary school girl, was kind enough to share her own programs written in the DCR Programming Language, included as Sandra's Samples below.
+
+#### Sandra's Sample 1
+
+DCR Code:
+
+```ruby
+l
+f 300
+r 230
+f 150
+l 140
+f 270
+r 128
+f 240
+re 98
+```
+
+Screenshot:
+
+![sandra sample1](/images/dcr-samples-sandra-sample1.png)
+
+#### Sandra's Sample 2
+
+DCR Code:
+
+```ruby
+left 200
+forward 100
+left 40
+forward 100
+left 60
+forward 100
+left 40
+forward 100
+right -40
+forward 100
+right -40
+forward 100
+right -70
+forward 100
+left 20
+forward 80
+repeat 30
+```
+
+Screenshot:
+
+![sandra sample2](/images/dcr-samples-sandra-sample2.png)
+
+#### Sandra's Sample 3
+
+DCR Code:
+
+```ruby
+forward 20
+right 45
+forward 22
+repeat 8
+left
+forward 20
+right
+forward 10
+right
+forward 50
+right
+forward 100
+right
+forward 30
+right
+forward 20
+right
+forward 40
+repeat 10
+```
+
+Screenshot:
+
+![sandra sample3](/images/dcr-samples-sandra-sample3.png)
+
+#### Sandra's Sample 4
+
+DCR Code:
+
+```ruby
+forward 50
+left 50
+forward 50
+right 50
+forward 50
+right 50
+forward 50
+left 50
+forward 50
+right 50
+forward 50
+right 50
+forward 50
+right 50
+forward 50
+left 50
+forward 50
+right 50
+forward 50
+forward 50
+right 50
+forward 50
+left 50
+forward
+repeat 40
+color or
+```
+
+Screenshot:
+
+![sandra sample4](/images/dcr-samples-sandra-sample4.png)
+
+#### Sandra's Sample 5
+
+DCR Code:
+
+```ruby
+f 100
+r 4
+f 50
+l 79
+f 100
+color
+rep 50
+```
+
+Screenshot:
+
+![sandra sample5](/images/dcr-samples-sandra-sample5.png)
+
+#### Sandra's Sample 6
+
+This is a continuation of [Sandra's Sample 5](#sandras-sample-5).
+
+DCR Code:
+
+```ruby
+f 100
+r 4
+f 50
+l 79
+f 100
+color
+rep 50
+l
+f 300
+r 230
+f 150
+l 140
+f 270
+r 128
+f 240
+re 98
+```
+
+Screenshot:
+
+![sandra sample6](/images/dcr-samples-sandra-sample6.png)
 
 ## Ruby gem
 
