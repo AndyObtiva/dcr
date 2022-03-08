@@ -1,5 +1,6 @@
 # TODO
 
+- upgrade to latest glimmer-dsl-swt for arm64 support
 - Add a video demo / gif
 - GUI appends command entries with a drop down for operation and a spinner/drop down for value (which could be moved up and down with drag&drop or arrows and could be deleted)
 - generate GUI components in alignment with programming commands
