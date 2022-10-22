@@ -4,7 +4,7 @@
 
 A young child programming language for drawing and coloring with repetition.
 
-DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) that is intentionally simplified to teach computer programming to all 1st-3rd grade young children in elementary school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
+DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) (turtle graphics) that is intentionally simplified to teach computer programming to all 1st-3rd grade young children in elementary school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
 
 ![Draw Color Repeat Screenshot](/images/dcr-screenshot.png)
 
