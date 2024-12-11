@@ -54,11 +54,7 @@ Rake::RDocTask.new do |rdoc|
 end
 
 require 'glimmer/rake_task'
-Glimmer::RakeTask::Package.javapackager_extra_args =
-  " -name 'Draw Color Repeat'" +
-  " -title 'Draw Color Repeat'" +
-  " -Bmac.CFBundleName='Draw Color Repeat'" +
-  " -Bmac.CFBundleIdentifier='org.dcr.application.DrawColorRepeat'"
-  # " -BlicenseType=" +
-  # " -Bmac.category=" +
-  # " -Bmac.signing-key-developer-id-app="
+Glimmer::RakeTask::Package.jpackage_extra_args =
+  " --name 'Draw Color Repeat'" +
+  " --description 'Draw Color Repeat'"
+  # You can add more options from https://docs.oracle.com/en/java/javase/16/jpackage/packaging-tool-user-guide.pdf

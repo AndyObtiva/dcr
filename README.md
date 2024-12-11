@@ -1,8 +1,9 @@
 # <img alt="DCR" src="https://raw.githubusercontent.com/AndyObtiva/dcr/master/package/linux/Draw%20Color%20Repeat.png" height=85 /> DCR (Draw Color Repeat) 1.0.0
 [![Gem Version](https://badge.fury.io/rb/draw_color_repeat.svg)](http://badge.fury.io/rb/draw_color_repeat)
-​
 
 A young child programming language for drawing and coloring with repetition.
+
+![Draw Color Repeat Demo](/images/dcr-demo.gif)
 
 DCR is a minimal subset of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html) (turtle graphics) that is intentionally simplified to teach computer programming to all 1st-3rd grade young children in elementary school (not just the ones who already gravitate towards math and computers). It uses a stick figure to draw instead of [Logo](https://el.media.mit.edu/logo-foundation/what_is_logo/logo_primer.html)'s turtle.
 
@@ -696,6 +697,42 @@ Screenshot:
 ## Ruby gem
 
 The [draw_color_repeat](https://rubygems.org/gems/draw_color_repeat) ruby gem requires the [JDK](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html) and [JRuby](https://www.jruby.org) versions mentioned in the pre-requisites of [Glimmer DSL for SWT](https://github.com/AndyObtiva/glimmer-dsl-swt#pre-requisites) to run via the `dcr` command.
+
+To setup DCR view the Ruby gem, run:
+
+```
+gem install draw_color_repeat
+```
+
+Afterwards, run:
+
+```
+dcr
+```
+
+If you run into trouble, then perhaps the newest version of JRuby is no longer compatible with this project. Try to setup by cloning the GitHub repo and running the [Ruby code](#ruby-code) directly as per the next section.
+
+## Ruby code
+
+To setup DCR, make sure to have the JRuby version in `.ruby-version` installed (e.g. `jruby-9.4.9.0`), and then run the following commands:
+
+```
+git clone https://github.com/AndyObtiva/dcr.git
+```
+
+```
+cd dcr
+```
+
+```
+bundle
+```
+
+```
+bin/dcr
+```
+
+(running `glimmer run` works as an alternative to `bin/dcr` if there is a need to pass `glimmer` options for troubleshooting)
 
 ## Contributing to dcr
 

@@ -27,7 +27,6 @@ class Dcr
         'black' => :black,
         'blue' => :cyan,
         'gray' => :gray,
-        'grey' => :gray,
         'green' => :green,
         'orange' => [255, 127, 0],
         'pink' => :magenta,
